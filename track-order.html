@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order | Golden Numbers Pakistan</title>
+    <meta name="description" content="Track your Golden & VIP mobile number order status, payment verification, and biometric delivery in real time.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+
+<body class="dark-theme">
+
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-symbol">
+                    <img src="images/logo.png" alt="Golden Numbers Logo">
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">GOLDEN<span class="text-gold">NUMBERS</span></span>
+                    <span class="logo-subtitle">YOUR LUCKY IDENTITY</span>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#choose-number" class="nav-link">Number's Category</a>
+                <a href="index.html#how-it-works" class="nav-link">How to Buy</a>
+                <a href="track-order.html" class="nav-link active">Track Order</a>
+                <a href="index.html#contact-us" class="nav-link">Contact Us</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://wa.me/923352292222" target="_blank" class="btn btn-whatsapp btn-sm">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+
+        <!-- ==========================================================================
+             SCREEN 3: Track Your Order Search Bar & Status
+             ========================================================================== -->
+        
+        <!-- Search Box -->
+        <section class="track-page-header">
+            <h2>Track Your Order</h2>
+            <p style="color: var(--text-muted); font-size: 0.86rem; margin: 0;">Enter your Order ID to check the status</p>
+
+            <div class="track-search-bar-row">
+                <input type="text" id="trackOrderIdInput" placeholder="e.g. GN-2026-123456" autocomplete="off">
+                <button type="button" class="btn-track-action" id="btnSearchTrack">
+                    <i class="fa-solid fa-magnifying-glass"></i> Track Order
+                </button>
+            </div>
+        </section>
+
+        <!-- Initial Clean State Prompt -->
+        <div id="trackInitialState" class="checkout-card" style="padding: 3rem 1.5rem; text-align: center; margin-bottom: 2rem;">
+            <i class="fa-solid fa-magnifying-glass text-gold" style="font-size: 2.2rem; margin-bottom: 0.85rem; display: block;"></i>
+            <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 0.35rem;">Live Order Tracking</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 480px; margin: 0 auto;">Enter your <strong>Order ID</strong> (from your order receipt or SMS/WhatsApp) in the box above to check real-time verification and delivery status.</p>
+        </div>
+
+        <!-- Not Found Message -->
+        <div id="trackNotFoundMessage" class="checkout-card" style="display: none; padding: 2.5rem; text-align: center; margin-bottom: 2rem;">
+            <i class="fa-solid fa-circle-exclamation text-gold" style="font-size: 2.5rem; margin-bottom: 0.75rem;"></i>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.35rem;">Order Not Found</h3>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Please check the Order ID and try again, or contact our VIP helpline on WhatsApp.</p>
+        </div>
+
+        <!-- Tracking Results Container (Hidden until search or direct link) -->
+        <div id="trackResultsContainer" style="display: none;">
+
+            <!-- 1. Order Status Stepper Card -->
+            <section class="order-status-card">
+                <div class="status-card-top-bar">
+                    <h3>Order Status</h3>
+                    <div class="status-order-id-badge" id="displayStatusOrderId">Order ID: GN-2025-000123</div>
+                </div>
+
+                <!-- 4-Step Stepper Component -->
+                <div class="tracking-stepper">
+                    <div class="stepper-progress-line">
+                        <div class="stepper-progress-fill" id="stepperFillLine"></div>
+                    </div>
+
+                    <!-- Step 1: Order Placed -->
+                    <div class="step-node completed" id="stepNode1">
+                        <div class="step-node-icon">
+                            <i class="fa-regular fa-clipboard"></i>
+                        </div>
+                        <div class="step-node-title">Order Placed</div>
+                        <div class="step-node-time">30 May 2025<br>12:30 PM</div>
+                    </div>
+
+                    <!-- Step 2: Payment Verified -->
+                    <div class="step-node completed" id="stepNode2">
+                        <div class="step-node-icon">
+                            <i class="fa-solid fa-credit-card"></i>
+                        </div>
+                        <div class="step-node-title">Payment Verified</div>
+                        <div class="step-node-time">30 May 2025<br>01:15 PM</div>
+                    </div>
+
+                    <!-- Step 3: In Progress -->
+                    <div class="step-node active" id="stepNode3">
+                        <div class="step-node-icon">
+                            <i class="fa-solid fa-box"></i>
+                        </div>
+                        <div class="step-node-title">In Progress</div>
+                        <div class="step-node-time">31 May 2025<br>10:00 AM</div>
+                    </div>
+
+                    <!-- Step 4: Delivered -->
+                    <div class="step-node pending" id="stepNode4">
+                        <div class="step-node-icon">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <div class="step-node-title">Delivered</div>
+                        <div class="step-node-time">Biometric Done</div>
+                    </div>
+                </div>
+
+                <!-- Status Alert Box -->
+                <div class="status-alert-ribbon">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span id="statusAlertMessage">Your order is being processed. We will notify you once it is ready.</span>
+                </div>
+            </section>
+
+            <!-- 2. Order Details Breakdown Card -->
+            <section class="tracking-details-card">
+                <h3>Order Details</h3>
+
+                <div class="details-grid">
+                    <div class="detail-row-item">
+                        <span class="detail-item-lbl">Choice Number</span>
+                        <span class="detail-item-val" id="tdChoiceNumber">0300 1234567</span>
+                    </div>
+
+                    <div class="detail-row-item">
+                        <span class="detail-item-lbl">Customer Name</span>
+                        <span class="detail-item-val" id="tdCustomerName">Muhammad Ali</span>
+                    </div>
+
+                    <div class="detail-row-item">
+                        <span class="detail-item-lbl">CNIC</span>
+                        <span class="detail-item-val" id="tdCNIC">42201-1234567-1</span>
+                    </div>
+
+                    <div class="detail-row-item">
+                        <span class="detail-item-lbl">Contact Number</span>
+                        <span class="detail-item-val" id="tdContact">0300 1234567</span>
+                    </div>
+
+                    <div class="detail-row-item">
+                        <span class="detail-item-lbl">Other Contact</span>
+                        <span class="detail-item-val" id="tdOtherContact">0311 9876543</span>
+                    </div>
+
+                    <div class="detail-row-item">
+                        <span class="detail-item-lbl">Payment Method</span>
+                        <span class="detail-item-val" id="tdPaymentMethod">Bank Transfer</span>
+                    </div>
+
+                    <div class="detail-row-item full-width">
+                        <span class="detail-item-lbl">Address</span>
+                        <span class="detail-item-val" id="tdAddress">House # 123, Street 5, Model Town, Lahore, Punjab</span>
+                    </div>
+
+                    <div class="detail-row-item">
+                        <span class="detail-item-lbl">Transaction ID</span>
+                        <span class="detail-item-val" id="tdTransactionId">123456789012</span>
+                    </div>
+
+                    <!-- Payment Screenshot Thumbnail -->
+                    <div class="detail-row-item">
+                        <span class="detail-item-lbl">Payment Screenshot</span>
+                        <div class="receipt-thumb-wrap">
+                            <img src="images/bank-transfer-logo.jpg" alt="Payment Receipt" class="receipt-thumb-img" id="receiptPreviewImg" onclick="openReceiptLightbox()">
+                            <button type="button" class="btn btn-sm btn-outline" style="margin-top: 0.35rem;" onclick="openReceiptLightbox()">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i> View Receipt
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Need Help Box -->
+                <div class="whatsapp-support-card" style="margin-top: 2rem;">
+                    <div class="support-txt-wrap">
+                        <div class="support-icon-circle">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h5 class="support-title">Need Help?</h5>
+                            <p class="support-desc">Contact our VIP verification desk on WhatsApp</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/923352292222" target="_blank" class="btn btn-whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp 0335-2292222
+                    </a>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+    <!-- Lightbox Modal for Receipt Image -->
+    <div class="receipt-lightbox" id="receiptLightbox" onclick="closeReceiptLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button type="button" class="lightbox-close-btn" onclick="closeReceiptLightbox()">&times;</button>
+            <img src="" alt="Payment Receipt" id="lightboxFullImg">
+        </div>
+    </div>
+
+    <!-- Client-Style Trust Footer -->
+    <footer class="bottom-trust-footer">
+        <div class="footer-wrap">
+            <div class="track-footer-badges-grid">
+                
+                <div class="track-badge-item">
+                    <i class="fa-solid fa-shield-halved text-gold"></i>
+                    <div>
+                        <div class="track-badge-title">100% Secure</div>
+                        <div class="track-badge-sub">Your data is safe with us</div>
+                    </div>
+                </div>
+
+                <div class="track-badge-item">
+                    <i class="fa-solid fa-credit-card text-gold"></i>
+                    <div>
+                        <div class="track-badge-title">Easy Payment</div>
+                        <div class="track-badge-sub">Multiple payment options</div>
+                    </div>
+                </div>
+
+                <div class="track-badge-item">
+                    <i class="fa-solid fa-truck-fast text-gold"></i>
+                    <div>
+                        <div class="track-badge-title">Fast Delivery</div>
+                        <div class="track-badge-sub">Quick and reliable service</div>
+                    </div>
+                </div>
+
+                <div class="track-badge-item">
+                    <i class="fa-solid fa-headset text-gold"></i>
+                    <div>
+                        <div class="track-badge-title">24/7 Support</div>
+                        <div class="track-badge-sub">We are here to help you</div>
+                    </div>
+                </div>
+
+                <div class="track-badge-item">
+                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted);">We Accept</span>
+                    <div style="display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap;">
+                        <img src="images/easypaisa-logo.png" alt="EasyPaisa" style="height: 20px; background: #fff; border-radius: 2px; padding: 1px;">
+                        <img src="images/jazzcash-logo.png" alt="JazzCash" style="height: 20px; background: #fff; border-radius: 2px; padding: 1px;">
+                        <img src="images/ubl-logo.png" alt="UBL" style="height: 20px; background: #fff; border-radius: 2px; padding: 1px;">
+                        <img src="images/bank-transfer-logo.jpg" alt="Bank Transfer" style="height: 20px; border-radius: 2px;">
+                    </div>
+                </div>
+
+                <a href="https://wa.me/923352292222" target="_blank" class="track-badge-item track-badge-whatsapp">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.35rem; color: #25D366;"></i>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500;">Need Help?</div>
+                        <div style="color: #25D366; font-weight: 800;">0335-2292222</div>
+                    </div>
+                </a>
+
+            </div>
+
+            <div style="text-align: center; font-size: 0.75rem; color: var(--text-dim); padding-top: 1.25rem;">
+                &copy; 2026 Golden Numbers Pakistan. All Rights Reserved. Transferred officially via PTA authorized biometric BVS systems.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/track-order.js"></script>
+</body>
+</html>

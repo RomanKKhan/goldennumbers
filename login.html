@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Golden Numbers Pakistan</title>
+    <meta name="description" content="Secure administrative login portal for Golden Numbers Pakistan.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Auth Guard Check (Redirect to Admin if already logged in) -->
+    <script>
+        (function() {
+            var isLogged = (localStorage.getItem('gn_admin_logged_in') === 'true') || 
+                           (sessionStorage.getItem('gn_admin_logged_in') === 'true');
+            if (isLogged) {
+                window.location.replace('admin.html');
+            }
+        })();
+    </script>
+    
+    <style>
+        :root {
+            --gold-primary: #FFB800;
+            --gold-light: #FFD043;
+            --gold-dark: #D4AF37;
+            --royal-blue: #2563EB;
+            --navy-dark: #0A0F1D;
+            --navy-card: #11192E;
+            --navy-border: #1E293B;
+            --text-main: #FFFFFF;
+            --text-muted: #94A3B8;
+            --emerald: #10B981;
+            --coral-red: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--navy-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 24px 16px;
+        }
+
+        /* Ambient Glow & Grid Background */
+        .ambient-glow-1 {
+            position: fixed;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(255, 184, 0, 0.15) 0%, rgba(37, 99, 235, 0.08) 50%, transparent 70%);
+            filter: blur(60px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            bottom: -150px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
+            filter: blur(70px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Login Container */
+        .login-wrapper {
+            width: 100%;
+            max-width: 440px;
+            position: relative;
+            z-index: 1;
+            animation: cardAppear 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Brand Top */
+        .login-brand-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .brand-logo-glow {
+            width: 68px;
+            height: 68px;
+            background: rgba(255, 184, 0, 0.1);
+            border: 1px solid rgba(255, 184, 0, 0.3);
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            box-shadow: 0 0 30px rgba(255, 184, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .brand-logo-glow:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        .brand-logo-glow img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+        }
+
+        .brand-title-main {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #FFFFFF 30%, #FFD043 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .brand-portal-sub {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Glassmorphic Login Card */
+        .login-card {
+            background: rgba(17, 25, 46, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 184, 0, 0.08);
+            position: relative;
+        }
+
+        .login-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20%;
+            right: 20%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFB800, #2563EB, transparent);
+            border-radius: 2px;
+        }
+
+        .card-heading {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-subheading {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        /* Form Inputs */
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #E2E8F0;
+            margin-bottom: 8px;
+        }
+
+        .input-icon-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon-wrap i.field-icon {
+            position: absolute;
+            left: 14px;
+            color: #64748B;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            pointer-events: none;
+        }
+
+        .login-input {
+            width: 100%;
+            height: 48px;
+            background: rgba(10, 15, 29, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0 42px 0 42px;
+            color: #FFFFFF;
+            font-size: 0.9rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .login-input:focus {
+            border-color: var(--gold-primary);
+            background: rgba(10, 15, 29, 0.95);
+            box-shadow: 0 0 0 3px rgba(255, 184, 0, 0.15);
+        }
+
+        .login-input:focus + i.field-icon,
+        .input-icon-wrap:focus-within i.field-icon {
+            color: var(--gold-primary);
+        }
+
+        .toggle-password-btn {
+            position: absolute;
+            right: 12px;
+            background: none;
+            border: none;
+            color: #64748B;
+            cursor: pointer;
+            padding: 6px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .toggle-password-btn:hover {
+            color: #FFFFFF;
+        }
+
+        /* Options Row */
+        .form-options-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            font-size: 0.82rem;
+        }
+
+        .remember-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .remember-checkbox-label input[type="checkbox"] {
+            accent-color: var(--gold-primary);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .forgot-link:hover {
+            color: var(--gold-light);
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .btn-submit-login {
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(135deg, #FFB800, #E69B00);
+            color: #0A0F1D;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px -4px rgba(255, 184, 0, 0.4);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-submit-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px -4px rgba(255, 184, 0, 0.55);
+            background: linear-gradient(135deg, #FFC72C, #F59E0B);
+        }
+
+        .btn-submit-login:active {
+            transform: translateY(0);
+        }
+
+        .btn-submit-login.loading {
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        /* Error Alert Box */
+        .auth-error-alert {
+            display: none;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #FCA5A5;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            margin-bottom: 20px;
+            align-items: center;
+            gap: 10px;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+
+
+        /* Footer Links */
+        .login-footer-links {
+            text-align: center;
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .back-to-store-link {
+            color: #94A3B8;
+            font-size: 0.84rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .back-to-store-link:hover {
+            color: #FFFFFF;
+        }
+
+        .security-badge-tag {
+            font-size: 0.74rem;
+            color: #64748B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .security-badge-tag i {
+            color: var(--emerald);
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 480px) {
+            body {
+                padding: 16px 12px;
+            }
+
+            .login-card {
+                padding: 24px 18px;
+                border-radius: 16px;
+            }
+
+            .brand-title-main {
+                font-size: 1.35rem;
+            }
+
+            .brand-logo-glow {
+                width: 58px;
+                height: 58px;
+                margin-bottom: 12px;
+            }
+
+            .brand-logo-glow img {
+                width: 36px;
+                height: 36px;
+            }
+
+            .card-heading {
+                font-size: 1.15rem;
+            }
+
+            .login-input {
+                height: 44px;
+                font-size: 0.85rem;
+            }
+
+            .btn-submit-login {
+                height: 46px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glow Backgrounds -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="bg-grid-overlay"></div>
+
+    <div class="login-wrapper">
+        
+        <!-- Brand Header -->
+        <div class="login-brand-header">
+            <div class="brand-logo-glow">
+                <img src="images/logo.png" alt="Golden Numbers Logo">
+            </div>
+            <h1 class="brand-title-main">GOLDEN NUMBERS</h1>
+            <p class="brand-portal-sub">Executive Administrator Portal</p>
+        </div>
+
+        <!-- Login Card Form -->
+        <div class="login-card">
+            
+            <h2 class="card-heading">
+                <i class="fa-solid fa-shield-halved text-gold" style="color: var(--gold-primary);"></i> Sign In
+            </h2>
+            <p class="card-subheading">Enter your secure credentials to access the admin dashboard.</p>
+
+            <!-- Error Notification Alert -->
+            <div class="auth-error-alert" id="authErrorAlert">
+                <i class="fa-solid fa-circle-exclamation" style="font-size: 1rem;"></i>
+                <span id="authErrorMessage">Invalid username or password. Please try again.</span>
+            </div>
+
+            <form id="adminLoginForm">
+                
+                <!-- Username / Email Input -->
+                <div class="form-group">
+                    <label class="form-label" for="loginUsername">Username or Admin Email</label>
+                    <div class="input-icon-wrap">
+                        <i class="fa-solid fa-user-shield field-icon"></i>
+                        <input type="text" id="loginUsername" class="login-input" placeholder="admin or info@goldennumbers..." required autocomplete="username">
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword">Master Password</label>
+                    <div class="input-icon-wrap">
+                        <i class="fa-solid fa-lock field-icon"></i>
+                        <input type="password" id="loginPassword" class="login-input" placeholder="••••••••••••" required autocomplete="current-password">
+                        <button type="button" class="toggle-password-btn" id="togglePasswordBtn" title="Show / Hide Password" aria-label="Toggle password visibility">
+                            <i class="fa-regular fa-eye" id="toggleEyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Options: Remember Me & Recovery -->
+                <div class="form-options-row">
+                    <label class="remember-checkbox-label">
+                        <input type="checkbox" id="rememberMeCheckbox" checked>
+                        <span>Keep me logged in</span>
+                    </label>
+                    <a href="https://wa.me/923352292222?text=I%20need%20admin%20password%20recovery%20assistance" target="_blank" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn-submit-login" id="loginSubmitBtn">
+                    <span id="btnText"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login to Dashboard</span>
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- Footer Navigation Links -->
+        <div class="login-footer-links">
+            <a href="index.html" class="back-to-store-link">
+                <i class="fa-solid fa-arrow-left"></i> Return to Live Storefront
+            </a>
+            <div class="security-badge-tag">
+                <i class="fa-solid fa-lock"></i> 256-Bit SSL Encrypted • Authorized Personnel Only
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Interactive Login Controller Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('adminLoginForm');
+            const usernameInput = document.getElementById('loginUsername');
+            const passwordInput = document.getElementById('loginPassword');
+            const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+            const toggleEyeIcon = document.getElementById('toggleEyeIcon');
+            const rememberMeCheckbox = document.getElementById('rememberMeCheckbox');
+            const authErrorAlert = document.getElementById('authErrorAlert');
+            const authErrorMessage = document.getElementById('authErrorMessage');
+            const submitBtn = document.getElementById('loginSubmitBtn');
+            const btnText = document.getElementById('btnText');
+
+            // Default credentials initialization in localStorage if not set
+            if (!localStorage.getItem('gn_admin_credentials')) {
+                localStorage.setItem('gn_admin_credentials', JSON.stringify({
+                    username: 'admin',
+                    email: 'info@goldennumbersofficial.pk',
+                    password: 'admin123'
+                }));
+            }
+
+            // Toggle Password Visibility
+            if (togglePasswordBtn) {
+                togglePasswordBtn.addEventListener('click', () => {
+                    const isPassword = passwordInput.type === 'password';
+                    passwordInput.type = isPassword ? 'text' : 'password';
+                    toggleEyeIcon.className = isPassword ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+                });
+            }
+
+            // Hide error on input change
+            [usernameInput, passwordInput].forEach(input => {
+                input.addEventListener('input', hideError);
+            });
+
+            function showError(msg) {
+                authErrorMessage.textContent = msg;
+                authErrorAlert.style.display = 'flex';
+                // Trigger shake animation again
+                authErrorAlert.style.animation = 'none';
+                authErrorAlert.offsetHeight; /* trigger reflow */
+                authErrorAlert.style.animation = 'shake 0.4s ease-in-out';
+            }
+
+            function hideError() {
+                authErrorAlert.style.display = 'none';
+            }
+
+            let failedAttempts = 0;
+            let lockoutTimer = null;
+
+            // Form Submit Authentication
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                hideError();
+
+                if (lockoutTimer) {
+                    showError('Too many failed attempts. Please wait for the lockout timer to expire.');
+                    return;
+                }
+
+                const enteredUser = usernameInput.value.trim().toLowerCase();
+                const enteredPass = passwordInput.value.trim();
+
+                // Fetch configured credentials
+                let storedCreds = {
+                    username: 'admin',
+                    email: 'info@goldennumbersofficial.pk',
+                    password: 'admin123'
+                };
+                try {
+                    const parsed = JSON.parse(localStorage.getItem('gn_admin_credentials') || '{}');
+                    storedCreds = { ...storedCreds, ...parsed };
+                } catch (err) {}
+
+                // Validate
+                const isValidUser = (enteredUser === storedCreds.username.toLowerCase()) || 
+                                    (enteredUser === storedCreds.email.toLowerCase()) ||
+                                    (enteredUser === 'admin');
+                const isValidPass = (enteredPass === storedCreds.password);
+
+                if (!isValidUser || !isValidPass) {
+                    failedAttempts++;
+                    passwordInput.value = '';
+
+                    if (failedAttempts >= 5) {
+                        let countdown = 30;
+                        submitBtn.disabled = true;
+                        submitBtn.style.opacity = '0.5';
+                        showError(`Access locked due to 5 failed attempts. Please wait ${countdown}s.`);
+
+                        lockoutTimer = setInterval(() => {
+                            countdown--;
+                            if (countdown <= 0) {
+                                clearInterval(lockoutTimer);
+                                lockoutTimer = null;
+                                failedAttempts = 0;
+                                submitBtn.disabled = false;
+                                submitBtn.style.opacity = '1';
+                                hideError();
+                            } else {
+                                showError(`Access locked due to 5 failed attempts. Please wait ${countdown}s.`);
+                            }
+                        }, 1000);
+                        return;
+                    }
+
+                    showError(`Incorrect username or password. (${5 - failedAttempts} attempts remaining)`);
+                    passwordInput.focus();
+                    return;
+                }
+
+                // Authentication Success Animation
+                failedAttempts = 0;
+                submitBtn.classList.add('loading');
+                btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+
+                // Save Session
+                const sessionPayload = {
+                    loggedIn: true,
+                    user: 'Super Admin',
+                    email: storedCreds.email || 'info@goldennumbersofficial.pk',
+                    loginTime: new Date().toISOString()
+                };
+
+                const remember = rememberMeCheckbox.checked;
+                if (remember) {
+                    localStorage.setItem('gn_admin_session', JSON.stringify(sessionPayload));
+                    localStorage.setItem('gn_admin_logged_in', 'true');
+                } else {
+                    sessionStorage.setItem('gn_admin_session', JSON.stringify(sessionPayload));
+                    sessionStorage.setItem('gn_admin_logged_in', 'true');
+                }
+
+                // Smooth redirect
+                setTimeout(() => {
+                    btnText.innerHTML = '<i class="fa-solid fa-circle-check"></i> Verified! Redirecting...';
+                    setTimeout(() => {
+                        window.location.replace('admin.html');
+                    }, 400);
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Golden Numbers Pakistan</title>
+    <meta name="description" content="Admin management panel for Golden Numbers Pakistan VIP SIMs. Add, edit, manage mobile numbers, orders, and sales analytics.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    
+    <!-- Auth Security Guard (Instant Redirection if unauthenticated) -->
+    <script>
+        (function() {
+            var isLogged = (localStorage.getItem('gn_admin_logged_in') === 'true') || 
+                           (sessionStorage.getItem('gn_admin_logged_in') === 'true');
+            if (!isLogged) {
+                window.location.replace('login.html');
+            }
+        })();
+    </script>
+    
+    <!-- Custom Admin Stylesheet -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+    <div class="admin-layout">
+        
+        <!-- Mobile Sidebar Backdrop Overlay -->
+        <div class="admin-sidebar-backdrop" id="adminSidebarBackdrop"></div>
+
+        <!-- LEFT SIDEBAR -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            
+            <!-- Brand Logo -->
+            <div class="sidebar-brand">
+                <a href="index.html" class="brand-link" title="Go to Storefront">
+                    <div class="crown-icon"><img src="images/logo.png" alt="Golden Numbers Logo"></div>
+                    <div class="brand-text">
+                        <span class="brand-title">GOLDEN</span>
+                        <span class="brand-sub">NUMBERS</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Navigation Sections -->
+            <div class="sidebar-scroll">
+                
+                <div class="sidebar-section-title">MAIN</div>
+                <ul class="sidebar-nav">
+                    <li><a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a></li>
+                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-list-ol"></i> <span>All Numbers</span></a></li>
+                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-layer-group"></i> <span>Categories</span></a></li>
+                    <li><a href="#recent-orders-section" class="nav-item"><i class="fa-solid fa-cart-shopping"></i> <span>Orders</span> <span class="nav-badge badge-blue">12</span></a></li>
+                </ul>
+
+                <div class="sidebar-section-title">MANAGE</div>
+                <ul class="sidebar-nav">
+                    <li><button class="nav-item-btn" id="openAddNumberModalBtn"><i class="fa-solid fa-circle-plus text-gold"></i> <span>Add New Number</span></button></li>
+                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-tags"></i> <span>Sold Numbers</span></a></li>
+                </ul>
+
+                <div class="sidebar-section-title">SETTINGS</div>
+                <ul class="sidebar-nav">
+                    <li><a href="#" class="nav-item"><i class="fa-regular fa-bell"></i> <span>Notification Settings</span></a></li>
+                </ul>
+
+                <!-- Bottom Support Card -->
+                <div class="sidebar-support-card">
+                    <span class="support-title">Need Support?</span>
+                    <a href="tel:03352292222" class="support-link"><i class="fa-solid fa-phone"></i> +92 335 2292222</a>
+                    <span class="support-email">info@goldennumbersofficial.pk</span>
+                    <a href="index.html" class="btn btn-sm btn-gold btn-block mt-2">
+                        <i class="fa-solid fa-store"></i> View Live Store
+                    </a>
+                </div>
+
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <div class="admin-main">
+            
+            <!-- Top App Bar -->
+            <header class="admin-topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle-btn" id="sidebarToggleBtn"><i class="fa-solid fa-bars"></i></button>
+                    <div class="topbar-search-box">
+                        <input type="text" id="topGlobalSearch" placeholder="Search number (0300...) or Order ID (GN-2026-...)" autocomplete="off">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <!-- Notifications -->
+                    <div class="topbar-dropdown-wrap">
+                        <button class="topbar-icon-btn" id="btnNotifications" title="Notifications">
+                            <i class="fa-regular fa-bell"></i>
+                            <span class="dot-badge badge-red" id="notifBadge">12</span>
+                        </button>
+                        <div class="topbar-dropdown-menu" id="notificationsDropdown" style="display: none;">
+                            <div class="dropdown-header">
+                                <h6>Notifications (12)</h6>
+                                <button class="btn-text-action" id="markAllReadBtn">Mark all as read</button>
+                            </div>
+                            <ul class="dropdown-list" id="notificationsList">
+                                <li class="dropdown-item unread">
+                                    <div class="dropdown-icon bg-blue"><i class="fa-solid fa-cart-shopping"></i></div>
+                                    <div class="dropdown-content">
+                                        <p class="dropdown-title">New VIP order placed for <strong>0340 222 5151</strong></p>
+                                        <span class="dropdown-time">2 mins ago</span>
+                                    </div>
+                                </li>
+                                <li class="dropdown-item unread">
+                                    <div class="dropdown-icon bg-green"><i class="fa-solid fa-circle-check"></i></div>
+                                    <div class="dropdown-content">
+                                        <p class="dropdown-title">Payment received: Rs. 125,000 (JazzCash)</p>
+                                        <span class="dropdown-time">15 mins ago</span>
+                                    </div>
+                                </li>
+                                <li class="dropdown-item">
+                                    <div class="dropdown-icon bg-orange"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                                    <div class="dropdown-content">
+                                        <p class="dropdown-title">Custom request for 0300 786 series</p>
+                                        <span class="dropdown-time">1 hour ago</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- User Profile Dropdown -->
+                    <div class="topbar-dropdown-wrap">
+                        <div class="user-profile-widget" id="userProfileWidgetBtn">
+                            <div class="user-avatar">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">Admin</span>
+                                <span class="user-role">Super Admin</span>
+                            </div>
+                        </div>
+                        <div class="topbar-dropdown-menu profile-menu" id="profileDropdown" style="display: none;">
+                            <div class="dropdown-header">
+                                <h6>Super Admin Profile</h6>
+                            </div>
+                            <ul class="dropdown-list">
+                                <li class="dropdown-item-link" id="btnProfileSettings"><i class="fa-solid fa-user-gear"></i> Account Settings</li>
+                                <li class="dropdown-item-link" id="btnBackupDatabase"><i class="fa-solid fa-database"></i> Backup Database (JSON)</li>
+                                <li class="dropdown-item-link" id="btnRestoreDatabase"><i class="fa-solid fa-upload"></i> Restore Backup</li>
+                                <li class="dropdown-item-link text-gold" id="btnLoadSampleData"><i class="fa-solid fa-arrows-rotate"></i> Load Sample Starter Data</li>
+                                <li class="dropdown-item-link text-red" id="btnClearAllData"><i class="fa-solid fa-trash-can"></i> Clear All Data (Fresh Start)</li>
+                                <li class="dropdown-item-link text-red" id="btnLogout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content Container -->
+            <div class="dashboard-container">
+
+                <!-- Welcome Header -->
+                <div class="dashboard-greeting-row">
+                    <div>
+                        <span class="breadcrumb-label">DASHBOARD</span>
+                        <h1 class="greeting-title">Welcome back, Admin! 👋</h1>
+                    </div>
+                    <div class="current-date-badge" id="currentDateBadge">
+                        Friday, May 30, 2026
+                    </div>
+                </div>
+
+                <!-- 8 Stat Metric Cards Grid -->
+                <!-- 8 Stat Metric Cards Grid -->
+                <div class="metric-cards-grid">
+                    <!-- Total Numbers (Royal Blue) -->
+                    <div class="stat-metric-card card-blue clickable-card" id="cardStatTotal" title="Click to view all numbers">
+                        <div class="metric-data">
+                            <span class="metric-title">TOTAL NUMBERS</span>
+                            <h2 class="metric-num" id="statTotalNumbers">1,245</h2>
+                            <span class="metric-sub">All Numbers</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-phone"></i></div>
+                    </div>
+
+                    <!-- Available Numbers (Green) -->
+                    <div class="stat-metric-card card-green clickable-card" id="cardStatAvailable" title="Click to filter available numbers">
+                        <div class="metric-data">
+                            <span class="metric-title">AVAILABLE NUMBERS</span>
+                            <h2 class="metric-num" id="statAvailableNumbers">980</h2>
+                            <span class="metric-sub">Available</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    </div>
+
+                    <!-- Sold Numbers (Coral / Red) -->
+                    <div class="stat-metric-card card-coral clickable-card" id="cardStatSold" title="Click to filter sold numbers">
+                        <div class="metric-data">
+                            <span class="metric-title">SOLD NUMBERS</span>
+                            <h2 class="metric-num" id="statSoldNumbers">265</h2>
+                            <span class="metric-sub">Sold</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                    </div>
+
+                    <!-- Pending Orders (Orange) -->
+                    <div class="stat-metric-card card-orange clickable-card" id="cardStatPending" title="Click to view pending orders">
+                        <div class="metric-data">
+                            <span class="metric-title">PENDING ORDERS</span>
+                            <h2 class="metric-num" id="statPendingOrders">12</h2>
+                            <span class="metric-sub">Pending</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-clock"></i></div>
+                    </div>
+
+                    <!-- Today's Orders (Purple) -->
+                    <div class="stat-metric-card card-purple clickable-card" id="cardStatTodayOrders" title="Click to filter today's orders">
+                        <div class="metric-data">
+                            <span class="metric-title">TODAY'S ORDERS</span>
+                            <h2 class="metric-num" id="statTodayOrders">8</h2>
+                            <span class="metric-sub">Today</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                    </div>
+
+                    <!-- Total Orders (Teal) -->
+                    <div class="stat-metric-card card-teal clickable-card" id="cardStatTotalOrders" title="Click to view all orders">
+                        <div class="metric-data">
+                            <span class="metric-title">TOTAL ORDERS</span>
+                            <h2 class="metric-num" id="statTotalOrders">345</h2>
+                            <span class="metric-sub">All Orders</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-list-check"></i></div>
+                    </div>
+
+                    <!-- Total Sales (Deep Blue) -->
+                    <div class="stat-metric-card card-deepblue clickable-card" id="cardStatTotalSales" title="Click for sales analytics">
+                        <div class="metric-data">
+                            <span class="metric-title">TOTAL SALES</span>
+                            <h2 class="metric-num" id="statTotalSales">Rs. 8,450,000</h2>
+                            <span class="metric-sub">All Time</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                    </div>
+
+                    <!-- Today's Sales (Emerald) -->
+                    <div class="stat-metric-card card-emerald clickable-card" id="cardStatTodaySales" title="Click for today's revenue breakdown">
+                        <div class="metric-data">
+                            <span class="metric-title">TODAY'S SALES</span>
+                            <h2 class="metric-num" id="statTodaySales">Rs. 245,000</h2>
+                            <span class="metric-sub">Today</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                    </div>
+                </div>
+
+                <!-- PRIORITY VIP HUNTING REQUESTS SECTION -->
+                <div class="panel-card priority-section-card" id="priority-requests-section">
+                    <div class="all-numbers-header-row">
+                        <div>
+                            <div class="priority-header-title-wrap">
+                                <span class="priority-crown-badge"><i class="fa-solid fa-crown text-gold"></i></span>
+                                <div>
+                                    <h3 class="panel-card-title">PRIORITY VIP HUNTING REQUESTS</h3>
+                                    <span class="table-subtitle">Live custom requests submitted by clients hunting for specific VIP patterns & series</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="header-action-group">
+                            <button class="btn btn-primary btn-sm" id="priorityAddNewBtn">
+                                <i class="fa-solid fa-plus"></i> Add New Request
+                            </button>
+                            <button class="btn btn-light btn-sm" id="priorityViewAllBtn">
+                                <i class="fa-solid fa-layer-group"></i> View All
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Priority Requests Dynamic Grid -->
+                    <div class="priority-requests-grid" id="priorityRequestsGrid">
+                        <!-- Populated dynamically by admin.js -->
+                    </div>
+                </div>
+
+                <!-- Recent Orders Table Section -->
+                <div class="panel-card table-section-card" id="recent-orders-section">
+                    <div class="all-numbers-header-row">
+                        <div>
+                            <h3 class="panel-card-title">CUSTOMER ORDERS & DISPATCH</h3>
+                            <span class="table-subtitle">Search, verify payments, and update live order tracking</span>
+                        </div>
+                        <div class="header-action-group">
+                            <button class="btn btn-light" id="recentOrdersViewAllBtn">
+                                <i class="fa-solid fa-rotate-right"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter & Search Toolbar -->
+                    <div class="admin-filters-bar">
+                        <div class="filter-input-wrap">
+                            <input type="text" id="adminOrdersSearchInput" placeholder="Search Order ID (e.g. GN-2026-...), Customer, Phone..." class="admin-input">
+                        </div>
+                        <div class="filter-select-wrap">
+                            <select id="adminOrdersStatusFilter" class="admin-select">
+                                <option value="all">All Statuses</option>
+                                <option value="Order Placed">Order Placed</option>
+                                <option value="Payment Verified">Payment Verified</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary btn-sm" id="adminApplyOrdersFilterBtn">Search</button>
+                        <button class="btn btn-light btn-sm" id="adminResetOrdersFilterBtn">Reset</button>
+                    </div>
+
+                    <div class="admin-table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ORDER ID</th>
+                                    <th>CUSTOMER</th>
+                                    <th>NUMBER</th>
+                                    <th>AMOUNT</th>
+                                    <th>STATUS</th>
+                                    <th>PAYMENT</th>
+                                    <th>RECEIPT</th>
+                                    <th>DATE</th>
+                                    <th class="text-right">ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentOrdersTableBody">
+                                <!-- Populated dynamically by admin.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- ALL GOLDEN NUMBERS MANAGEMENT & CRUD SECTION -->
+                <div class="panel-card table-section-card" id="all-numbers-section">
+                    
+                    <div class="all-numbers-header-row">
+                        <div>
+                            <h3 class="panel-card-title">ALL GOLDEN NUMBERS</h3>
+                            <span class="table-subtitle">Search, filter, edit, or add new VIP numbers</span>
+                        </div>
+                        <div class="header-action-group">
+                            <button class="btn btn-primary" id="tableAddNewNumberBtn">
+                                <i class="fa-solid fa-plus"></i> Add New Number
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter & Search Toolbar -->
+                    <div class="admin-filters-bar">
+                        <div class="filter-input-wrap">
+                            <input type="text" id="adminSearchInput" placeholder="Search numbers (786, 111, 999...)" class="admin-input">
+                        </div>
+                        <div class="filter-select-wrap">
+                            <select id="adminCategoryFilter" class="admin-select">
+                                <option value="all">All Categories</option>
+                                <option value="Golden">Golden</option>
+                                <option value="Platinum">Platinum</option>
+                                <option value="Silver">Silver</option>
+                                <option value="Diamond">Diamond</option>
+                                <option value="VIP">VIP / Royal</option>
+                                <option value="Master Code">Master Code</option>
+                                <option value="Hexa">Hexa (6 Digits)</option>
+                                <option value="Penta">Penta (5 Digits)</option>
+                                <option value="Double Tetra">Double Tetra</option>
+                                <option value="Repeating Pair">Repeating Pair</option>
+                                <option value="Slider">Slider</option>
+                                <option value="786">786 Special</option>
+                                <option value="0333">0333 Series</option>
+                            </select>
+                        </div>
+                        <div class="filter-select-wrap">
+                            <select id="adminNetworkFilter" class="admin-select">
+                                <option value="all">All Networks</option>
+                                <option value="jazz">Jazz 4G</option>
+                                <option value="ufone">Ufone 5G</option>
+                                <option value="zong">Zong 4G</option>
+                                <option value="telenor">Telenor 4G</option>
+                                <option value="warid">Warid LTE</option>
+                            </select>
+                        </div>
+                        <div class="filter-select-wrap">
+                            <select id="adminStatusFilter" class="admin-select">
+                                <option value="all">All Status</option>
+                                <option value="Available">Available</option>
+                                <option value="Sold">Sold</option>
+                                <option value="Reserved">Reserved</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary btn-sm" id="adminApplyFilterBtn">Search</button>
+                        <button class="btn btn-light btn-sm" id="adminResetFilterBtn">Reset</button>
+                    </div>
+
+                    <!-- Numbers Table -->
+                    <div class="admin-table-responsive">
+                        <table class="admin-table numbers-crud-table">
+                            <thead>
+                                <tr>
+                                    <th>NUMBER</th>
+                                    <th>NETWORK</th>
+                                    <th>CATEGORY</th>
+                                    <th>PRICE</th>
+                                    <th>STATUS</th>
+                                    <th>ADDED ON</th>
+                                    <th class="text-right">ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminNumbersTableBody">
+                                <!-- Populated dynamically by admin.js -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Table Footer & Pagination -->
+                    <div class="admin-table-footer">
+                        <span class="entries-count-text" id="adminEntriesCountText">Showing 0 entries</span>
+                        <div class="admin-pagination" id="adminPagination">
+                            <button class="admin-page-btn" id="adminPrevBtn"><i class="fa-solid fa-chevron-left"></i></button>
+                            <div class="admin-page-list" id="adminPageList">
+                                <button class="admin-page-btn active">1</button>
+                            </div>
+                            <button class="admin-page-btn" id="adminNextBtn"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Admin Footer -->
+                <footer class="admin-page-footer">
+                    <p>&copy; 2026 Golden Numbers Pakistan. All Rights Reserved.</p>
+                    <div class="footer-legal-links">
+                        <a href="#" id="linkPrivacyPolicy">Privacy Policy</a>
+                        <a href="#" id="linkTerms">Terms & Conditions</a>
+                        <a href="index.html">Live Website</a>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL 1: ADD / EDIT GOLDEN NUMBER -->
+    <div class="admin-modal-overlay" id="numberModal" style="display: none;">
+        <div class="admin-modal-card">
+            <div class="modal-card-top">
+                <h3 id="modalTitleText"><i class="fa-solid fa-plus-circle text-blue"></i> Add New Golden Number</h3>
+                <button class="modal-close-icon" id="closeNumberModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <form id="saveNumberForm" class="admin-form">
+                <input type="hidden" id="editNumberId" value="">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Mobile Number *</label>
+                        <input type="text" id="modalInputNumber" class="admin-input" placeholder="e.g. 0300 1234567" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Network *</label>
+                        <select id="modalInputNetwork" class="admin-select" required>
+                            <option value="jazz">Jazz 4G</option>
+                            <option value="ufone">Ufone 5G</option>
+                            <option value="zong">Zong 4G</option>
+                            <option value="telenor">Telenor 4G</option>
+                            <option value="warid">Warid LTE</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category / Tier *</label>
+                        <select id="modalInputCategory" class="admin-select" required>
+                            <option value="Golden">Golden Number</option>
+                            <option value="Platinum">Platinum Number</option>
+                            <option value="Silver">Silver Number</option>
+                            <option value="Diamond">Diamond Number</option>
+                            <option value="VIP">VIP Number</option>
+                            <option value="Master Code">Master Code</option>
+                            <option value="Hexa">Hexa (6 Digits)</option>
+                            <option value="Penta">Penta (5 Digits)</option>
+                            <option value="Double Tetra">Double Tetra</option>
+                            <option value="Repeating Pair">Repeating Pair</option>
+                            <option value="Slider">Slider</option>
+                            <option value="786">786 Special</option>
+                            <option value="0333">0333 Series</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price in PKR (Rs.) *</label>
+                        <input type="number" id="modalInputPrice" class="admin-input" placeholder="e.g. 45000" min="1000" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Status *</label>
+                        <select id="modalInputStatus" class="admin-select" required>
+                            <option value="Available">Available</option>
+                            <option value="Sold">Sold</option>
+                            <option value="Reserved">Reserved</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Digits Pattern</label>
+                        <select id="modalInputPattern" class="admin-select">
+                            <option value="4digits">4 Digits (Tetra)</option>
+                            <option value="5digits">5 Digits (Penta)</option>
+                            <option value="6digits">6 Digits (Hexa)</option>
+                            <option value="7digits">7 Digits (Hepta / Royal)</option>
+                            <option value="selection">Selection Code / Pairs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-form-actions">
+                    <button type="button" class="btn btn-light" id="cancelModalBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="submitModalBtn">Save Number</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 2: BULK IMPORT NUMBERS -->
+    <div class="admin-modal-overlay" id="bulkImportModal" style="display: none;">
+        <div class="admin-modal-card">
+            <div class="modal-card-top">
+                <h3><i class="fa-solid fa-file-import text-blue"></i> Bulk Import Golden Numbers</h3>
+                <button class="modal-close-icon" id="closeBulkImportModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="bulkImportForm" class="admin-form">
+                <p class="card-sub-text">Enter or paste mobile numbers below. One number per line or CSV formatted (Number, Price, Category, Network):</p>
+                <textarea id="bulkImportText" class="admin-input" rows="6" placeholder="0300 1111222, 45000, Golden, ufone&#10;0321 9999888, 65000, Platinum, jazz&#10;0345 7860786, 95000, VIP, telenor" style="font-family:monospace; resize: vertical;" required></textarea>
+                <div class="modal-form-actions">
+                    <button type="button" class="btn btn-light" id="cancelBulkImportBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Import Numbers</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: ORDER DETAILS & STATUS UPDATE -->
+    <div class="admin-modal-overlay" id="orderDetailsModal" style="display: none;">
+        <div class="admin-modal-card">
+            <div class="modal-card-top">
+                <h3 id="orderDetailsTitle"><i class="fa-solid fa-receipt text-blue"></i> Order Details - GN-1025</h3>
+                <button class="modal-close-icon" id="closeOrderDetailsBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form id="updateOrderForm" class="admin-form">
+                <input type="hidden" id="orderEditId" value="">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Customer Name</label>
+                        <input type="text" id="orderCustomerName" class="admin-input" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>VIP Mobile Number</label>
+                        <input type="text" id="orderVipNumber" class="admin-input" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Order Amount (PKR)</label>
+                        <input type="text" id="orderAmount" class="admin-input" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Order Date</label>
+                        <input type="text" id="orderDate" class="admin-input" readonly>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Order Status *</label>
+                        <select id="orderStatusSelect" class="admin-select">
+                            <option value="Pending">Pending</option>
+                            <option value="Approved">Approved (PTA Transfer Scheduled)</option>
+                            <option value="Delivered">Delivered (Completed)</option>
+                            <option value="Rejected">Rejected / Cancelled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Status *</label>
+                        <select id="orderPaymentSelect" class="admin-select">
+                            <option value="Paid">Paid</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Failed">Failed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-form-actions">
+                    <a href="#" id="orderCustomerWhatsappBtn" target="_blank" class="btn btn-light" style="margin-right: auto; color: #10B981; border-color: #A7F3D0;">
+                        <i class="fa-brands fa-whatsapp"></i> Chat Customer
+                    </a>
+                    <button type="button" class="btn btn-light" id="cancelOrderDetailsBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 4: GENERIC ADMIN SECTION MODAL (For Categories, Customers, Payments, Wishlist, Reports, SEO, Backup, Activity Log) -->
+    <div class="admin-modal-overlay" id="genericSectionModal" style="display: none;">
+        <div class="admin-modal-card" style="max-width: 650px;">
+            <div class="modal-card-top">
+                <h3 id="genericModalTitle"><i class="fa-solid fa-layer-group text-blue"></i> Section</h3>
+                <button class="modal-close-icon" id="closeGenericModalBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="admin-form" id="genericModalBody">
+                <!-- Content dynamically filled -->
+            </div>
+            <div class="modal-card-top" style="border-top: 1px solid var(--admin-border); border-bottom:none; justify-content: flex-end;">
+                <button type="button" class="btn btn-primary" id="genericModalDoneBtn">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="adminToastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

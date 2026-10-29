@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Your Order | Golden Numbers Pakistan</title>
+    <meta name="description" content="Securely place your order for premium Golden & VIP mobile numbers in Pakistan with instant biometric CNIC transfer.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/checkout.css">
+</head>
+
+<body class="dark-theme">
+
+    <!-- Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-symbol">
+                    <img src="images/logo.png" alt="Golden Numbers Logo">
+                </div>
+                <div class="logo-text">
+                    <span class="logo-title">GOLDEN<span class="text-gold">NUMBERS</span></span>
+                    <span class="logo-subtitle">YOUR LUCKY IDENTITY</span>
+                </div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#choose-number" class="nav-link">Number's Category</a>
+                <a href="index.html#how-it-works" class="nav-link">How to Buy</a>
+                <a href="track-order.html" class="nav-link">Track Order</a>
+                <a href="index.html#contact-footer" class="nav-link">Contact Us</a>
+            </nav>
+
+            <div class="header-actions">
+                <a href="https://wa.me/923352292222" target="_blank" class="btn btn-whatsapp btn-sm">
+                    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+
+        <!-- ==========================================================================
+             SCREEN 1: Place Your Order Form
+             ========================================================================== -->
+        <section id="placeOrderSection" class="checkout-card">
+            
+            <div class="checkout-card-header">
+                <div class="checkout-header-icon">
+                    <i class="fa-regular fa-clipboard"></i>
+                </div>
+                <div>
+                    <h2>Place Your Order</h2>
+                    <p>Fill the form below to place your order with verified biometric transfer</p>
+                </div>
+            </div>
+
+            <div class="checkout-card-body">
+                <form id="checkoutOrderForm" autocomplete="off" novalidate>
+
+                    <!-- 1. Selected Number -->
+                    <div class="checkout-step-block">
+                        <div class="step-title-badge">
+                            <span class="step-num-circle">1</span>
+                            <span>Selected Number</span>
+                        </div>
+
+                        <div class="selected-number-box">
+                            <div class="choice-label-wrap">
+                                <span class="choice-label-sub">Choice Number</span>
+                                <div class="choice-vip-number" id="checkoutChoiceNumber">0300 1234567</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <div class="choice-price-tag" id="checkoutChoicePrice">Rs. 45,000</div>
+                                <span class="availability-pill">
+                                    <i class="fa-solid fa-circle-check"></i> Available
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Customer Information -->
+                    <div class="checkout-step-block">
+                        <div class="step-title-badge">
+                            <span class="step-num-circle">2</span>
+                            <span>Customer Information</span>
+                        </div>
+
+                        <div class="checkout-form-grid">
+                            <div class="form-field">
+                                <label for="custFullName">Full Name <span class="req">*</span></label>
+                                <input type="text" id="custFullName" placeholder="Muhammad Ali" required autocomplete="off">
+                                <div class="field-error-msg" id="err-custFullName"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter a valid full name (letters only, min 3 characters).</span></div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="custCNIC">CNIC <span class="req">*</span></label>
+                                <input type="text" id="custCNIC" placeholder="42201-1234567-1" maxlength="15" inputmode="numeric" required autocomplete="off">
+                                <div class="field-error-msg" id="err-custCNIC"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter a valid 13-digit CNIC (e.g. 42201-1234567-1).</span></div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="custContact">Contact Number <span class="req">*</span></label>
+                                <input type="tel" id="custContact" placeholder="0300 1234567" maxlength="12" inputmode="numeric" required autocomplete="off">
+                                <div class="field-error-msg" id="err-custContact"><i class="fa-solid fa-circle-exclamation"></i> <span>Valid 11-digit mobile number required (starting with 03).</span></div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="custOtherContact">Other Contact Number</label>
+                                <input type="tel" id="custOtherContact" placeholder="0311 9876543" maxlength="12" inputmode="numeric" autocomplete="off">
+                                <div class="field-error-msg" id="err-custOtherContact"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter a valid 11-digit mobile number (numbers only).</span></div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="custEmail">Email Address</label>
+                                <input type="email" id="custEmail" placeholder="you@example.com" autocomplete="email">
+                                <div class="field-error-msg" id="err-custEmail"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter a valid email address.</span></div>
+                            </div>
+
+                            <div class="form-field form-full-col">
+                                <label for="custAddress">Delivery Address <span class="req">*</span></label>
+                                <input type="text" id="custAddress" placeholder="House # 123, Street 5, Model Town, Lahore, Punjab" required autocomplete="off">
+                                <div class="field-error-msg" id="err-custAddress"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter a complete delivery address (min 8 characters).</span></div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="custCity">City <span class="req">*</span></label>
+                                <select id="custCity" required>
+                                    <option value="" disabled selected>Select City</option>
+                                    <option value="Lahore">Lahore</option>
+                                    <option value="Karachi">Karachi</option>
+                                    <option value="Islamabad">Islamabad</option>
+                                    <option value="Rawalpindi">Rawalpindi</option>
+                                    <option value="Faisalabad">Faisalabad</option>
+                                    <option value="Multan">Multan</option>
+                                    <option value="Peshawar">Peshawar</option>
+                                    <option value="Quetta">Quetta</option>
+                                    <option value="Sialkot">Sialkot</option>
+                                    <option value="Gujranwala">Gujranwala</option>
+                                    <option value="Hyderabad">Hyderabad</option>
+                                    <option value="Bahawalpur">Bahawalpur</option>
+                                    <option value="Other">Other City</option>
+                                </select>
+                                <div class="field-error-msg" id="err-custCity"><i class="fa-solid fa-circle-exclamation"></i> <span>Please select your city.</span></div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="custProvince">Province <span class="req">*</span></label>
+                                <select id="custProvince" required>
+                                    <option value="" disabled selected>Select Province</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Sindh">Sindh</option>
+                                    <option value="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</option>
+                                    <option value="Balochistan">Balochistan</option>
+                                    <option value="Islamabad Capital Territory">Islamabad Capital Territory</option>
+                                    <option value="Azad Kashmir">Azad Kashmir</option>
+                                    <option value="Gilgit-Baltistan">Gilgit-Baltistan</option>
+                                </select>
+                                <div class="field-error-msg" id="err-custProvince"><i class="fa-solid fa-circle-exclamation"></i> <span>Please select your province.</span></div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="custPostalCode">Postal Code</label>
+                                <input type="text" id="custPostalCode" placeholder="54000" maxlength="6" inputmode="numeric" autocomplete="off">
+                                <div class="field-error-msg" id="err-custPostalCode"><i class="fa-solid fa-circle-exclamation"></i> <span>Postal code must contain numbers only (e.g. 54000).</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Payment Information -->
+                    <div class="checkout-step-block">
+                        <div class="step-title-badge">
+                            <span class="step-num-circle">3</span>
+                            <span>Payment Information</span>
+                        </div>
+
+                        <label style="font-size: 0.82rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.65rem;">
+                            Payment Method <span class="req">*</span>
+                        </label>
+
+                        <!-- 3 Payment Cards Grid -->
+                        <div class="payment-selector-grid">
+                            <!-- EasyPaisa -->
+                            <label class="payment-method-card active">
+                                <input type="radio" name="paymentMethod" value="EasyPaisa" checked>
+                                <div class="pay-logo-frame">
+                                    <img src="images/easypaisa-logo.png" alt="EasyPaisa">
+                                </div>
+                                <span class="pay-method-name">EasyPaisa</span>
+                            </label>
+
+                            <!-- JazzCash -->
+                            <label class="payment-method-card">
+                                <input type="radio" name="paymentMethod" value="JazzCash">
+                                <div class="pay-logo-frame">
+                                    <img src="images/jazzcash-logo.png" alt="JazzCash">
+                                </div>
+                                <span class="pay-method-name">JazzCash</span>
+                            </label>
+
+                            <!-- UBL -->
+                            <label class="payment-method-card">
+                                <input type="radio" name="paymentMethod" value="UBL">
+                                <div class="pay-logo-frame">
+                                    <img src="images/ubl-logo.png" alt="UBL">
+                                </div>
+                                <span class="pay-method-name">UBL</span>
+                            </label>
+                        </div>
+
+                        <!-- Dynamic Bank / Account Instructions Box -->
+                        <div class="bank-instructions-box" id="bankInstructionsBox">
+                            <i class="fa-solid fa-circle-info text-gold" style="font-size: 1.15rem; margin-top: 2px;"></i>
+                            <div>
+                                <div><strong>EasyPaisa Direct Transfer:</strong> Account: <code>03352292222</code> &bull; Title: <strong>Rehan Khan</strong></div>
+                                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 2px;">IBAN: <code>PK04TMFB0000000046176533</code></div>
+                                <div style="font-size: 0.74rem; color: var(--gold-light); margin-top: 3px;">Please deposit/transfer the amount and enter your Transaction ID with screenshot below.</div>
+                            </div>
+                        </div>
+
+                        <!-- Transaction ID -->
+                        <div class="form-field" style="margin-bottom: 1.15rem;">
+                            <label for="custTransactionId">Transaction ID <span class="req">*</span></label>
+                            <input type="text" id="custTransactionId" placeholder="123456789012" maxlength="30" required autocomplete="off">
+                            <div class="field-error-msg" id="err-custTransactionId"><i class="fa-solid fa-circle-exclamation"></i> <span>Transaction ID must be letters and numbers only (min 6 characters).</span></div>
+                        </div>
+
+                        <!-- Upload Payment Screenshot -->
+                        <div class="form-field">
+                            <label>Upload Payment Screenshot <span class="req">*</span></label>
+                            
+                            <div class="file-upload-dropzone" id="fileUploadDropzone">
+                                <input type="file" id="receiptFileInput" accept="image/*" required>
+                                <div class="upload-icon-circle">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                </div>
+                                <div class="upload-prompt-text">Click or drag & drop payment screenshot here</div>
+                                <div class="upload-prompt-sub">Supports JPG, PNG, WEBP (Max 5MB)</div>
+                            </div>
+                            <div class="field-error-msg" id="err-receiptFileInput"><i class="fa-solid fa-circle-exclamation"></i> <span>Please upload a valid payment receipt screenshot (JPG, PNG, WEBP).</span></div>
+
+                            <!-- Uploaded Preview -->
+                            <div class="upload-preview-card" id="uploadPreviewCard">
+                                <div class="preview-file-info">
+                                    <i class="fa-regular fa-image preview-file-icon"></i>
+                                    <div>
+                                        <div class="preview-file-name" id="previewFileName">IMG_2025_05_30_123456.jpg</div>
+                                        <div class="preview-file-size" id="previewFileSize">2.4 MB</div>
+                                    </div>
+                                </div>
+                                <button type="button" class="preview-remove-btn" id="removeReceiptBtn" title="Remove image">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Order Button -->
+                    <button type="submit" class="btn-submit-checkout">
+                        <i class="fa-solid fa-check"></i> Submit Order
+                    </button>
+
+                    <div class="checkout-security-footnote">
+                        <i class="fa-solid fa-lock text-green"></i> Your information is 100% secure and safe with us.
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             SCREEN 2: Order Placed Successfully! (Confirmation State)
+             ========================================================================== -->
+        <section id="orderSuccessSection" class="order-success-screen" style="display: none;">
+            
+            <div class="celebrate-card">
+                <div class="success-check-badge">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h2>Order Placed Successfully!</h2>
+                <p class="success-sub">Thank you! Your order has been placed.</p>
+
+                <div class="order-id-highlight-box">
+                    <span class="order-id-label">Your Order ID</span>
+                    <div class="order-id-val-row">
+                        <span class="order-id-code" id="successOrderIdText">GN-2025-000123</span>
+                        <button type="button" class="order-copy-btn" id="copyOrderIdBtn" title="Copy Order ID">
+                            <i class="fa-regular fa-copy"></i>
+                        </button>
+                    </div>
+                    <span class="order-timestamp" id="successTimestamp">30 May 2025 | 12:30 PM</span>
+                </div>
+            </div>
+
+            <!-- Order Summary Card -->
+            <div class="order-summary-card">
+                <h3>Order Summary</h3>
+                
+                <table class="summary-table">
+                    <tbody>
+                        <tr>
+                            <td class="summary-lbl">Choice Number</td>
+                            <td class="summary-val" id="summaryChoiceNumber">0300 1234567</td>
+                        </tr>
+                        <tr>
+                            <td class="summary-lbl">Customer Name</td>
+                            <td class="summary-val" id="summaryCustomerName">Muhammad Ali</td>
+                        </tr>
+                        <tr>
+                            <td class="summary-lbl">Amount</td>
+                            <td class="summary-val text-gold" id="summaryAmount">Rs. 45,000</td>
+                        </tr>
+                        <tr>
+                            <td class="summary-lbl">Payment Method</td>
+                            <td class="summary-val" id="summaryPaymentMethod">Bank Transfer</td>
+                        </tr>
+                        <tr>
+                            <td class="summary-lbl">Transaction ID</td>
+                            <td class="summary-val" id="summaryTransactionId">123456789012</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="summary-notice-box">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>We will verify your payment and update your order status soon. You can track your order using the Order ID above.</span>
+                </div>
+            </div>
+
+            <!-- Track Your Order Box -->
+            <div class="quick-track-cta-box">
+                <h4 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 800; margin: 0 0 0.35rem; color: #fff;">Track Your Order</h4>
+                <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">Enter your Order ID to check the status of your order</p>
+
+                <div class="track-input-group">
+                    <input type="text" id="quickTrackInput" placeholder="GN-2025-000123" readonly>
+                    <button type="button" class="btn-track-action" id="btnQuickTrack">
+                        <i class="fa-solid fa-magnifying-glass"></i> Track Order
+                    </button>
+                </div>
+
+                <div class="delivery-truck-graphic">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <i class="fa-solid fa-arrow-right-long" style="font-size: 1.2rem; color: var(--text-dim);"></i>
+                    <i class="fa-solid fa-location-dot" style="color: #0284C7;"></i>
+                </div>
+                <div class="delivery-subtext">
+                    We will notify you on your provided contact number once your order status changes.
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Client-Style Trust Footer -->
+    <footer class="bottom-trust-footer">
+        <div class="footer-wrap">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+                
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <i class="fa-solid fa-shield-halved text-gold" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <div style="font-size: 0.86rem; font-weight: 800; color: #fff;">100% Secure</div>
+                        <div style="font-size: 0.74rem; color: var(--text-muted);">Your data is safe with us</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <i class="fa-solid fa-credit-card text-gold" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <div style="font-size: 0.86rem; font-weight: 800; color: #fff;">Easy Payment</div>
+                        <div style="font-size: 0.74rem; color: var(--text-muted);">Multiple payment options</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <i class="fa-solid fa-truck-fast text-gold" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <div style="font-size: 0.86rem; font-weight: 800; color: #fff;">Fast Delivery</div>
+                        <div style="font-size: 0.74rem; color: var(--text-muted);">Quick and reliable service</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 0.65rem;">
+                    <i class="fa-solid fa-headset text-gold" style="font-size: 1.5rem;"></i>
+                    <div>
+                        <div style="font-size: 0.86rem; font-weight: 800; color: #fff;">24/7 Support</div>
+                        <div style="font-size: 0.74rem; color: var(--text-muted);">We are here to help you</div>
+                    </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted);">We Accept</span>
+                    <div style="display: flex; gap: 0.4rem;">
+                        <img src="images/easypaisa-logo.png" alt="EasyPaisa" style="height: 20px; background: #fff; border-radius: 2px; padding: 1px;">
+                        <img src="images/jazzcash-logo.png" alt="JazzCash" style="height: 20px; background: #fff; border-radius: 2px; padding: 1px;">
+                        <img src="images/ubl-logo.png" alt="UBL" style="height: 20px; background: #fff; border-radius: 2px; padding: 1px;">
+                        <img src="images/bank-transfer-logo.jpg" alt="Bank Transfer" style="height: 20px; border-radius: 2px;">
+                    </div>
+                </div>
+
+                <a href="https://wa.me/923352292222" target="_blank" style="display: flex; align-items: center; gap: 0.5rem; color: #25D366; font-size: 0.85rem; font-weight: 800;">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 500;">Need Help?</div>
+                        <div>0335-2292222</div>
+                    </div>
+                </a>
+
+            </div>
+
+            <div style="text-align: center; font-size: 0.75rem; color: var(--text-dim); padding-top: 1.25rem;">
+                &copy; 2026 Golden Numbers Pakistan. All Rights Reserved. Transferred officially via PTA authorized biometric BVS systems.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>
