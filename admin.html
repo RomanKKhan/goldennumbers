@@ -27,11 +27,14 @@
             }
         })();
     </script>
+
+    <!-- Excel import support for bulk inventory uploads -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     
     <!-- Custom Admin Stylesheet -->
     <link rel="stylesheet" href="css/admin.css">
 </head>
-<body class="admin-body">
+<body class="admin-body admin-dashboard-menus">
 
     <div class="admin-layout">
         
@@ -43,47 +46,44 @@
             
             <!-- Brand Logo -->
             <div class="sidebar-brand">
-                <a href="index.html" class="brand-link" title="Go to Storefront">
+                <a href="index.html" class="brand-link" title="Golden Numbers admin">
                     <div class="crown-icon"><img src="images/logo.png" alt="Golden Numbers Logo"></div>
                     <div class="brand-text">
                         <span class="brand-title">GOLDEN</span>
                         <span class="brand-sub">NUMBERS</span>
+                        <span class="brand-tagline">VIP &amp; PREMIUM NUMBERS</span>
                     </div>
                 </a>
             </div>
 
-            <!-- Navigation Sections -->
             <div class="sidebar-scroll">
-                
-                <div class="sidebar-section-title">MAIN</div>
                 <ul class="sidebar-nav">
                     <li><a href="#" class="nav-item active"><i class="fa-solid fa-house"></i> <span>Dashboard</span></a></li>
-                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-list-ol"></i> <span>All Numbers</span></a></li>
-                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-layer-group"></i> <span>Categories</span></a></li>
-                    <li><a href="#recent-orders-section" class="nav-item"><i class="fa-solid fa-cart-shopping"></i> <span>Orders</span> <span class="nav-badge badge-blue">12</span></a></li>
+                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-layer-group"></i> <span>Numbers Inventory</span></a></li>
+                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-grip"></i> <span>Categories</span></a></li>
+                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-layer-group"></i> <span>Sub Categories</span></a></li>
+                    <li><button class="nav-item-btn" id="openAddNumberModalBtn"><i class="fa-solid fa-square-plus"></i> <span>Add Number</span></button></li>
+                    <li><button class="nav-item-btn" id="sidebarBulkInventoryImportBtn"><i class="fa-solid fa-arrow-up-from-bracket"></i> <span>Bulk Import (Add Numbers)</span></button></li>
+                    <li><a href="#recent-orders-section" class="nav-item"><i class="fa-solid fa-cart-shopping"></i> <span>New Sale</span></a></li>
+                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-bookmark"></i> <span>Book Number</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fa-solid fa-user-tag"></i> <span>Stock Owners</span></a></li>
+                    <li><a href="#priority-requests-section" class="nav-item"><i class="fa-regular fa-heart"></i> <span>Favorite Number Requests</span></a></li>
+                    <li><a href="#recent-orders-section" class="nav-item"><i class="fa-solid fa-cube"></i> <span>Customer Orders</span></a></li>
+                    <li><a href="track-order.html" class="nav-item"><i class="fa-solid fa-truck-fast"></i> <span>Track Order</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fa-solid fa-chart-column"></i> <span>Reports</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fa-solid fa-clock-rotate-left"></i> <span>Activity Log</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fa-solid fa-users"></i> <span>User Employees</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fa-regular fa-user"></i> <span>My Profile</span></a></li>
+                    <li><a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> <span>Settings &amp; Backup</span></a></li>
+                    <li><a href="index.html" class="nav-item"><i class="fa-solid fa-store"></i> <span>View Live Market</span></a></li>
+                    <li><a href="#" class="nav-item nav-item-logout"><i class="fa-solid fa-right-from-bracket"></i> <span>Logout</span></a></li>
                 </ul>
-
-                <div class="sidebar-section-title">MANAGE</div>
-                <ul class="sidebar-nav">
-                    <li><button class="nav-item-btn" id="openAddNumberModalBtn"><i class="fa-solid fa-circle-plus text-gold"></i> <span>Add New Number</span></button></li>
-                    <li><a href="#all-numbers-section" class="nav-item"><i class="fa-solid fa-tags"></i> <span>Sold Numbers</span></a></li>
-                </ul>
-
-                <div class="sidebar-section-title">SETTINGS</div>
-                <ul class="sidebar-nav">
-                    <li><a href="#" class="nav-item"><i class="fa-regular fa-bell"></i> <span>Notification Settings</span></a></li>
-                </ul>
-
-                <!-- Bottom Support Card -->
-                <div class="sidebar-support-card">
-                    <span class="support-title">Need Support?</span>
-                    <a href="tel:03352292222" class="support-link"><i class="fa-solid fa-phone"></i> +92 335 2292222</a>
-                    <span class="support-email">info@goldennumbersofficial.pk</span>
-                    <a href="index.html" class="btn btn-sm btn-gold btn-block mt-2">
-                        <i class="fa-solid fa-store"></i> View Live Store
-                    </a>
-                </div>
-
+            </div>
+            <div class="sidebar-footer">
+                <i class="fa-solid fa-crown sidebar-footer-crown" aria-hidden="true"></i>
+                <a href="https://goldennumbersofficial.pk" target="_blank" rel="noopener noreferrer">
+                    <i class="fa-solid fa-globe" aria-hidden="true"></i> goldennumbersofficial.pk
+                </a>
             </div>
         </aside>
 
@@ -145,7 +145,7 @@
                                 <i class="fa-solid fa-user-tie"></i>
                             </div>
                             <div class="user-info">
-                                <span class="user-name">Admin</span>
+                                <span class="user-name">RehanKhan</span>
                                 <span class="user-role">Super Admin</span>
                             </div>
                         </div>
@@ -173,22 +173,23 @@
                 <div class="dashboard-greeting-row">
                     <div>
                         <span class="breadcrumb-label">DASHBOARD</span>
-                        <h1 class="greeting-title">Welcome back, Admin! 👋</h1>
+                        <h1 class="greeting-title">Welcome back, RehanKhan! 👋</h1>
                     </div>
                     <div class="current-date-badge" id="currentDateBadge">
                         Friday, May 30, 2026
                     </div>
                 </div>
 
-                <!-- 8 Stat Metric Cards Grid -->
-                <!-- 8 Stat Metric Cards Grid -->
+                <!-- Dashboard metric cards -->
                 <div class="metric-cards-grid">
                     <!-- Total Numbers (Royal Blue) -->
                     <div class="stat-metric-card card-blue clickable-card" id="cardStatTotal" title="Click to view all numbers">
                         <div class="metric-data">
                             <span class="metric-title">TOTAL NUMBERS</span>
-                            <h2 class="metric-num" id="statTotalNumbers">1,245</h2>
-                            <span class="metric-sub">All Numbers</span>
+                            <h2 class="metric-num" id="statTotalNumbers">0</h2>
+                            <span class="metric-sub">All inventory numbers</span>
+                            <strong class="metric-value" id="statTotalStockValue">Total stock value: Rs. 0</strong>
+                            <span class="metric-details">→ View details</span>
                         </div>
                         <div class="metric-icon"><i class="fa-solid fa-phone"></i></div>
                     </div>
@@ -196,9 +197,11 @@
                     <!-- Available Numbers (Green) -->
                     <div class="stat-metric-card card-green clickable-card" id="cardStatAvailable" title="Click to filter available numbers">
                         <div class="metric-data">
-                            <span class="metric-title">AVAILABLE NUMBERS</span>
-                            <h2 class="metric-num" id="statAvailableNumbers">980</h2>
-                            <span class="metric-sub">Available</span>
+                            <span class="metric-title">AVAILABLE</span>
+                            <h2 class="metric-num" id="statAvailableNumbers">0</h2>
+                            <span class="metric-sub">Ready to sell</span>
+                            <strong class="metric-value" id="statAvailableValue">Available value: Rs. 0</strong>
+                            <span class="metric-details">→ View details</span>
                         </div>
                         <div class="metric-icon"><i class="fa-solid fa-circle-check"></i></div>
                     </div>
@@ -207,8 +210,10 @@
                     <div class="stat-metric-card card-coral clickable-card" id="cardStatSold" title="Click to filter sold numbers">
                         <div class="metric-data">
                             <span class="metric-title">SOLD NUMBERS</span>
-                            <h2 class="metric-num" id="statSoldNumbers">265</h2>
-                            <span class="metric-sub">Sold</span>
+                            <h2 class="metric-num" id="statSoldNumbers">0</h2>
+                            <span class="metric-sub">Completed or sold numbers</span>
+                            <strong class="metric-value" id="statSoldValue">Sold numbers value: Rs. 0</strong>
+                            <span class="metric-details">→ View details</span>
                         </div>
                         <div class="metric-icon"><i class="fa-solid fa-cart-shopping"></i></div>
                     </div>
@@ -217,8 +222,9 @@
                     <div class="stat-metric-card card-orange clickable-card" id="cardStatPending" title="Click to view pending orders">
                         <div class="metric-data">
                             <span class="metric-title">PENDING ORDERS</span>
-                            <h2 class="metric-num" id="statPendingOrders">12</h2>
-                            <span class="metric-sub">Pending</span>
+                            <h2 class="metric-num" id="statPendingOrders">0</h2>
+                            <span class="metric-sub">Orders awaiting action</span>
+                            <span class="metric-details">→ View details</span>
                         </div>
                         <div class="metric-icon"><i class="fa-solid fa-clock"></i></div>
                     </div>
@@ -237,8 +243,9 @@
                     <div class="stat-metric-card card-teal clickable-card" id="cardStatTotalOrders" title="Click to view all orders">
                         <div class="metric-data">
                             <span class="metric-title">TOTAL ORDERS</span>
-                            <h2 class="metric-num" id="statTotalOrders">345</h2>
-                            <span class="metric-sub">All Orders</span>
+                            <h2 class="metric-num" id="statTotalOrders">0</h2>
+                            <span class="metric-sub">All recorded orders</span>
+                            <span class="metric-details">→ View details</span>
                         </div>
                         <div class="metric-icon"><i class="fa-solid fa-list-check"></i></div>
                     </div>
@@ -247,8 +254,10 @@
                     <div class="stat-metric-card card-deepblue clickable-card" id="cardStatTotalSales" title="Click for sales analytics">
                         <div class="metric-data">
                             <span class="metric-title">TOTAL SALES</span>
-                            <h2 class="metric-num" id="statTotalSales">Rs. 8,450,000</h2>
-                            <span class="metric-sub">All Time</span>
+                            <h2 class="metric-num" id="statTotalSales">Rs. 0</h2>
+                            <span class="metric-sub">All recorded sales</span>
+                            <strong class="metric-value">Total sales revenue</strong>
+                            <span class="metric-details">→ View details</span>
                         </div>
                         <div class="metric-icon"><i class="fa-solid fa-sack-dollar"></i></div>
                     </div>
@@ -257,12 +266,170 @@
                     <div class="stat-metric-card card-emerald clickable-card" id="cardStatTodaySales" title="Click for today's revenue breakdown">
                         <div class="metric-data">
                             <span class="metric-title">TODAY'S SALES</span>
-                            <h2 class="metric-num" id="statTodaySales">Rs. 245,000</h2>
-                            <span class="metric-sub">Today</span>
+                            <h2 class="metric-num" id="statTodaySales">Rs. 0</h2>
+                            <span class="metric-sub">Sales recorded today</span>
+                            <strong class="metric-value">Today's sales revenue</strong>
+                            <span class="metric-details">→ View details</span>
                         </div>
                         <div class="metric-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
                     </div>
+
+                    <!-- Net Profit (Red / Coral) -->
+                    <div class="stat-metric-card card-coral clickable-card" id="cardStatNetProfit" title="Current net profit from sales and expenses">
+                        <div class="metric-data">
+                            <span class="metric-title">NET PROFIT</span>
+                            <h2 class="metric-num" id="statNetProfit">Rs. 0</h2>
+                            <span class="metric-sub">P&L after expenses</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                    </div>
+
+                    <!-- Revenue (Deep Blue) -->
+                    <div class="stat-metric-card card-deepblue clickable-card" id="cardStatRevenue" title="Revenue from all inventory sales">
+                        <div class="metric-data">
+                            <span class="metric-title">TOTAL REVENUE</span>
+                            <h2 class="metric-num" id="statRevenue">Rs. 0</h2>
+                            <span class="metric-sub">Gross sales</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    </div>
+                    <div class="stat-metric-card card-orange clickable-card" id="cardStatBooking" title="View booked numbers">
+                        <div class="metric-data">
+                            <span class="metric-title">BOOKING NUMBERS</span>
+                            <h2 class="metric-num" id="statBookingNumbers">0</h2>
+                            <span class="metric-sub">Numbers booked for customers</span>
+                            <strong class="metric-value" id="statBookingValue">Booking value: Rs. 0</strong>
+                            <span class="metric-details">→ View details</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-regular fa-calendar-check"></i></div>
+                    </div>
+                    <div class="stat-metric-card card-orange clickable-card" id="cardStatReports" title="View reports">
+                        <div class="metric-data">
+                            <span class="metric-title">REPORTS</span>
+                            <h2 class="metric-num">View reports</h2>
+                            <span class="metric-sub">Inventory, sales &amp; activity</span>
+                            <span class="metric-details">→ View details</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-regular fa-file-lines"></i></div>
+                    </div>
+                    <div class="stat-metric-card card-teal clickable-card" id="cardStatCustomerHistory" title="View customer history">
+                        <div class="metric-data">
+                            <span class="metric-title">CUSTOMER HISTORY</span>
+                            <h2 class="metric-num" id="statCustomerHistory">0</h2>
+                            <span class="metric-sub">All customer records &amp; orders</span>
+                            <span class="metric-details">→ View details</span>
+                        </div>
+                        <div class="metric-icon"><i class="fa-solid fa-users"></i></div>
+                    </div>
                 </div>
+
+                <section class="dashboard-analytics-grid" aria-label="Business overview">
+                    <article class="panel-card dashboard-widget sales-widget">
+                        <div class="dashboard-widget-header">
+                            <div>
+                                <span class="dashboard-eyebrow">PERFORMANCE</span>
+                                <h2 class="dashboard-widget-title">Sales &amp; Profit Overview</h2>
+                            </div>
+                            <span class="dashboard-period"><i class="fa-regular fa-calendar"></i> All recorded orders</span>
+                        </div>
+                        <div class="sales-summary">
+                            <div>
+                                <span class="summary-label">Recorded sales</span>
+                                <strong id="dashboardSalesTotal">Rs. 0</strong>
+                            </div>
+                            <div>
+                                <span class="summary-label">Net profit</span>
+                                <strong id="dashboardProfitTotal">Rs. 0</strong>
+                            </div>
+                        </div>
+                        <div class="sales-chart" id="dashboardSalesChart" role="img" aria-label="Recorded order values">
+                            <div class="sales-chart-grid"><span>Higher</span><span>Lower</span></div>
+                            <div class="sales-chart-bars" id="dashboardSalesBars"></div>
+                        </div>
+                        <div class="chart-caption"><span><i class="chart-legend-dot"></i> Recent recorded orders</span><span id="dashboardSalesCount">0 orders</span></div>
+                    </article>
+
+                    <article class="panel-card dashboard-widget inventory-widget">
+                        <div class="dashboard-widget-header">
+                            <div>
+                                <span class="dashboard-eyebrow">STOCK</span>
+                                <h2 class="dashboard-widget-title">Inventory Distribution</h2>
+                            </div>
+                            <i class="fa-solid fa-layer-group widget-heading-icon"></i>
+                        </div>
+                        <div class="inventory-chart-layout">
+                            <div class="inventory-donut" id="dashboardInventoryDonut" role="img" aria-label="Number inventory status">
+                                <div class="inventory-donut-center">
+                                    <strong id="dashboardInventoryTotal">0</strong>
+                                    <span>Numbers</span>
+                                </div>
+                            </div>
+                            <div class="inventory-legend">
+                                <div><i class="legend-dot available-dot"></i><span>Available</span><strong id="dashboardAvailableCount">0</strong></div>
+                                <div><i class="legend-dot sold-dot"></i><span>Sold</span><strong id="dashboardSoldCount">0</strong></div>
+                                <div><i class="legend-dot reserved-dot"></i><span>Reserved</span><strong id="dashboardReservedCount">0</strong></div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="panel-card dashboard-widget activity-widget">
+                        <div class="dashboard-widget-header">
+                            <div>
+                                <span class="dashboard-eyebrow">ORDERS</span>
+                                <h2 class="dashboard-widget-title">Order Activity</h2>
+                            </div>
+                            <a class="dashboard-widget-link" href="#recent-orders-section">View orders <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                        <div class="activity-metrics">
+                            <div><span class="activity-icon activity-new"><i class="fa-regular fa-clock"></i></span><span>Awaiting action</span><strong id="dashboardAwaitingOrders">0</strong></div>
+                            <div><span class="activity-icon activity-progress"><i class="fa-solid fa-truck-fast"></i></span><span>In progress</span><strong id="dashboardInProgressOrders">0</strong></div>
+                            <div><span class="activity-icon activity-done"><i class="fa-solid fa-circle-check"></i></span><span>Completed</span><strong id="dashboardCompletedOrders">0</strong></div>
+                        </div>
+                        <a class="activity-footer-link" href="#recent-orders-section">Manage customer orders <i class="fa-solid fa-arrow-right"></i></a>
+                    </article>
+                </section>
+
+                <section class="dashboard-support-grid" aria-label="Inventory insights and shortcuts">
+                    <article class="panel-card dashboard-widget network-widget">
+                        <div class="dashboard-widget-header">
+                            <div>
+                                <span class="dashboard-eyebrow">INVENTORY</span>
+                                <h2 class="dashboard-widget-title">Network Wise Numbers</h2>
+                            </div>
+                            <i class="fa-solid fa-signal widget-heading-icon"></i>
+                        </div>
+                        <div class="insight-list" id="dashboardNetworkList"></div>
+                    </article>
+
+                    <article class="panel-card dashboard-widget category-widget">
+                        <div class="dashboard-widget-header">
+                            <div>
+                                <span class="dashboard-eyebrow">PORTFOLIO</span>
+                                <h2 class="dashboard-widget-title">Category Wise Numbers</h2>
+                            </div>
+                            <i class="fa-solid fa-tags widget-heading-icon"></i>
+                        </div>
+                        <div class="insight-list" id="dashboardCategoryList"></div>
+                    </article>
+
+                    <article class="panel-card dashboard-widget quick-actions-widget">
+                        <div class="dashboard-widget-header">
+                            <div>
+                                <span class="dashboard-eyebrow">SHORTCUTS</span>
+                                <h2 class="dashboard-widget-title">Quick Actions</h2>
+                            </div>
+                            <i class="fa-solid fa-bolt widget-heading-icon"></i>
+                        </div>
+                        <div class="dashboard-quick-actions">
+                            <button type="button" class="dashboard-action" id="qaAddNumberBtn"><i class="fa-solid fa-plus"></i><span>Add Number</span></button>
+                            <button type="button" class="dashboard-action" id="qaAddCategoryBtn"><i class="fa-solid fa-layer-group"></i><span>Categories</span></button>
+                            <button type="button" class="dashboard-action" id="qaAddOrderBtn"><i class="fa-solid fa-cart-shopping"></i><span>New Sale</span></button>
+                            <button type="button" class="dashboard-action" id="qaAddCustomerBtn"><i class="fa-solid fa-user-plus"></i><span>Add Customer</span></button>
+                            <button type="button" class="dashboard-action" id="qaBulkImportBtn"><i class="fa-solid fa-file-import"></i><span>Bulk Import</span></button>
+                            <a class="dashboard-action" href="#inventory-management-section"><i class="fa-solid fa-boxes-stacked"></i><span>Inventory</span></a>
+                        </div>
+                    </article>
+                </section>
 
                 <!-- PRIORITY VIP HUNTING REQUESTS SECTION -->
                 <div class="panel-card priority-section-card" id="priority-requests-section">
@@ -388,11 +555,11 @@
                         <div class="filter-select-wrap">
                             <select id="adminNetworkFilter" class="admin-select">
                                 <option value="all">All Networks</option>
-                                <option value="jazz">Jazz 4G</option>
+                                <option value="jazz">Jazz 5G</option>
                                 <option value="ufone">Ufone 5G</option>
-                                <option value="zong">Zong 4G</option>
-                                <option value="telenor">Telenor 4G</option>
-                                <option value="warid">Warid LTE</option>
+                                <option value="zong">Zong 5G</option>
+                                <option value="telenor">Telenor 5G</option>
+                                <option value="warid">Warid 5G</option>
                             </select>
                         </div>
                         <div class="filter-select-wrap">
@@ -417,7 +584,8 @@
                                     <th>CATEGORY</th>
                                     <th>PRICE</th>
                                     <th>STATUS</th>
-                                    <th>ADDED ON</th>
+                                    <th>STOCK OWNER</th>
+                                    <th>ADDED ON (DATE &amp; TIME, PKT)</th>
                                     <th class="text-right">ACTIONS</th>
                                 </tr>
                             </thead>
@@ -439,6 +607,203 @@
                         </div>
                     </div>
 
+                </div>
+
+                <!-- INVENTORY MANAGEMENT & PROFIT AND LOSS SECTION -->
+                <div class="panel-card inventory-section-card" id="inventory-management-section">
+                    <div class="all-numbers-header-row">
+                        <div>
+                            <h3 class="panel-card-title">INVENTORY MANAGEMENT & PROFIT & LOSS</h3>
+                            <span class="table-subtitle">Track product stock, sales movements, and the current business profit statement</span>
+                        </div>
+                        <div class="header-action-group">
+                            <button class="btn btn-primary btn-sm" id="inventoryBulkUploadBtn" type="button">
+                                <i class="fa-solid fa-file-excel"></i> Bulk Import Excel
+                            </button>
+                            <button class="btn btn-light btn-sm" id="inventoryRefreshBtn" type="button">
+                                <i class="fa-solid fa-rotate-right"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="inventory-summary-grid">
+                        <div class="inventory-summary-card card-blue">
+                            <span class="metric-title">TOTAL STOCK VALUE</span>
+                            <h3 class="metric-num" id="inventoryTotalValue">Rs. 0</h3>
+                            <small class="metric-sub">Cost basis</small>
+                        </div>
+                        <div class="inventory-summary-card card-green">
+                            <span class="metric-title">UNITS IN STOCK</span>
+                            <h3 class="metric-num" id="inventoryStockUnits">0</h3>
+                            <small class="metric-sub">Available items</small>
+                        </div>
+                        <div class="inventory-summary-card card-purple">
+                            <span class="metric-title">UNITS SOLD</span>
+                            <h3 class="metric-num" id="inventoryUnitsSold">0</h3>
+                            <small class="metric-sub">From sales records</small>
+                        </div>
+                        <div class="inventory-summary-card card-emerald">
+                            <span class="metric-title">GROSS PROFIT</span>
+                            <h3 class="metric-num" id="inventoryGrossProfit">Rs. 0</h3>
+                            <small class="metric-sub">Revenue - COGS</small>
+                        </div>
+                    </div>
+
+                    <div class="inventory-layout">
+                        <div class="inventory-panel">
+                            <div class="inventory-panel-head">
+                                <h4>Add Inventory Item</h4>
+                            </div>
+                            <form id="inventoryForm" class="inventory-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Item Name</label>
+                                        <input type="text" id="inventoryItemName" class="admin-input" placeholder="e.g. VIP 786 Series" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Category</label>
+                                        <select id="inventoryItemCategory" class="admin-select">
+                                            <option value="Premium">Premium</option>
+                                            <option value="VIP">VIP</option>
+                                            <option value="Golden">Golden</option>
+                                            <option value="Platinum">Platinum</option>
+                                            <option value="Silver">Silver</option>
+                                            <option value="General">General</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>SKU</label>
+                                        <input type="text" id="inventoryItemSku" class="admin-input" placeholder="e.g. VIP-786">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Supplier</label>
+                                        <input type="text" id="inventoryItemSupplier" class="admin-input" placeholder="e.g. Golden Supply Co.">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Cost Price (PKR)</label>
+                                        <input type="number" id="inventoryItemCost" class="admin-input" min="0" step="100" value="0" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Selling Price (PKR)</label>
+                                        <input type="number" id="inventoryItemSelling" class="admin-input" min="0" step="100" value="0" required>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Opening Quantity</label>
+                                        <input type="number" id="inventoryItemQuantity" class="admin-input" min="0" step="1" value="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Reorder Level</label>
+                                        <input type="number" id="inventoryItemReorder" class="admin-input" min="0" step="1" value="1">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mt-2">
+                                    <i class="fa-solid fa-box-open"></i> Save Inventory Item
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="inventory-panel">
+                            <div class="inventory-panel-head">
+                                <h4>Stock Movement</h4>
+                            </div>
+                            <form id="inventoryMovementForm" class="inventory-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Item</label>
+                                        <select id="inventoryMovementItem" class="admin-select" required></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Movement Type</label>
+                                        <select id="inventoryMovementType" class="admin-select">
+                                            <option value="Stock In">Stock In</option>
+                                            <option value="Sale">Sale</option>
+                                            <option value="Stock Out">Stock Out</option>
+                                            <option value="Expense">Expense</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label>Quantity</label>
+                                        <input type="number" id="inventoryMovementQty" class="admin-input" min="1" step="1" value="1" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Unit Price / Value (PKR)</label>
+                                        <input type="number" id="inventoryMovementUnitPrice" class="admin-input" min="0" step="100" value="0">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Note</label>
+                                    <input type="text" id="inventoryMovementNote" class="admin-input" placeholder="e.g. Restocked supplier batch, customer sale, delivery expense">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block mt-2">
+                                    <i class="fa-solid fa-plus"></i> Record Movement
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="inventory-table-wrap">
+                        <div class="table-header-inline">
+                            <h4>Current Inventory</h4>
+                        </div>
+                        <div class="admin-table-responsive">
+                            <table class="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ITEM</th>
+                                        <th>CATEGORY</th>
+                                        <th>SKU</th>
+                                        <th>UNIT COST</th>
+                                        <th>SELLING</th>
+                                        <th>QTY</th>
+                                        <th>VALUE</th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="inventoryTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="pnl-grid">
+                        <div class="inventory-panel pnl-panel">
+                            <div class="inventory-panel-head">
+                                <h4>Profit & Loss Statement</h4>
+                            </div>
+                            <div class="admin-table-responsive">
+                                <table class="admin-table">
+                                    <tbody id="pnlStatementTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="inventory-panel pnl-panel">
+                            <div class="inventory-panel-head">
+                                <h4>Inventory Ledger</h4>
+                            </div>
+                            <div class="admin-table-responsive">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>DATE</th>
+                                            <th>ITEM</th>
+                                            <th>TYPE</th>
+                                            <th>QTY</th>
+                                            <th>AMOUNT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="inventoryLedgerTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Admin Footer -->
@@ -475,11 +840,11 @@
                     <div class="form-group">
                         <label>Network *</label>
                         <select id="modalInputNetwork" class="admin-select" required>
-                            <option value="jazz">Jazz 4G</option>
+                            <option value="jazz">Jazz 5G</option>
                             <option value="ufone">Ufone 5G</option>
-                            <option value="zong">Zong 4G</option>
-                            <option value="telenor">Telenor 4G</option>
-                            <option value="warid">Warid LTE</option>
+                            <option value="zong">Zong 5G</option>
+                            <option value="telenor">Telenor 5G</option>
+                            <option value="warid">Warid 5G</option>
                         </select>
                     </div>
                 </div>
@@ -506,6 +871,20 @@
                     <div class="form-group">
                         <label>Price in PKR (Rs.) *</label>
                         <input type="number" id="modalInputPrice" class="admin-input" placeholder="e.g. 45000" min="1000" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalInputCost">Cost Price (PKR)</label>
+                        <input type="number" id="modalInputCost" class="admin-input" min="0" step="1" value="0">
+                        <small class="stock-owner-field-help">Used to calculate profit when sold.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalInputOwner">Stock Owner</label>
+                        <select id="modalInputOwner" class="admin-select">
+                            <option value="">Unassigned</option>
+                        </select>
                     </div>
                 </div>
 
@@ -546,8 +925,8 @@
                 <button class="modal-close-icon" id="closeBulkImportModalBtn"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <form id="bulkImportForm" class="admin-form">
-                <p class="card-sub-text">Enter or paste mobile numbers below. One number per line or CSV formatted (Number, Price, Category, Network):</p>
-                <textarea id="bulkImportText" class="admin-input" rows="6" placeholder="0300 1111222, 45000, Golden, ufone&#10;0321 9999888, 65000, Platinum, jazz&#10;0345 7860786, 95000, VIP, telenor" style="font-family:monospace; resize: vertical;" required></textarea>
+                <p class="card-sub-text">One number per line: Number, Price, Category, Network, Cost Price, Stock Owner (the last two are optional).</p>
+                <textarea id="bulkImportText" class="admin-input" rows="6" placeholder="0300 1111222, 45000, Golden, ufone, 30000, Rehan Khan&#10;0321 9999888, 65000, Platinum, jazz, 42000, Barkat Khan&#10;0345 7860786, 95000, VIP, telenor" style="font-family:monospace; resize: vertical;" required></textarea>
                 <div class="modal-form-actions">
                     <button type="button" class="btn btn-light" id="cancelBulkImportBtn">Cancel</button>
                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Import Numbers</button>

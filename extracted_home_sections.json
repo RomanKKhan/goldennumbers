@@ -1,0 +1,338 @@
+{
+  "premium": [
+    {
+      "number": "0330-0000088",
+      "network": "Ufone",
+      "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufoneFull.png",
+      "type": "Premium",
+      "price": "Rs 250,000"
+    },
+    {
+      "number": "0321-6666677",
+      "network": "Warid 5G",
+      "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+      "type": "Premium",
+      "price": "Rs 150,000"
+    },
+    {
+      "number": "0336-0111111",
+      "network": "Ufone",
+      "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufoneFull.png",
+      "type": "Premium",
+      "price": "Rs 150,000"
+    },
+    {
+      "number": "03000-303333",
+      "network": "Jazz 5G",
+      "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+      "type": "Premium",
+      "price": "Rs 500,000"
+    },
+    {
+      "number": "0322-2222274",
+      "network": "Warid 5G",
+      "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+      "type": "Premium",
+      "price": "Rs 300,000"
+    },
+    {
+      "number": "0331-1311111",
+      "network": "Ufone",
+      "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufoneFull.png",
+      "type": "Premium",
+      "price": "Rs 75,000"
+    },
+    {
+      "number": "0325-0055555",
+      "network": "Warid 5G",
+      "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+      "type": "Premium",
+      "price": "Rs 150,000"
+    },
+    {
+      "number": "0325-5000005",
+      "network": "Warid 5G",
+      "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+      "type": "Premium",
+      "price": "Rs 175,000"
+    }
+  ],
+  "accordions": {
+    "Golden Numbers": [],
+    "Silver Numbers": [],
+    "Platinum Numbers": [
+      {
+        "number": "0320-8000001",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 65,000"
+      },
+      {
+        "number": "0330-0000088",
+        "network": "Ufone",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufone.png",
+        "price": "Rs 250,000"
+      },
+      {
+        "number": "0325-9900000",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 150,000"
+      },
+      {
+        "number": "0321-6666677",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 150,000"
+      },
+      {
+        "number": "0300-7777766",
+        "network": "Jazz 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 275,000"
+      },
+      {
+        "number": "0311-0100000",
+        "network": "Zong",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/zong1.png",
+        "price": ""
+      },
+      {
+        "number": "0321-0077777",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 250,000"
+      },
+      {
+        "number": "0308-6600000",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 150,000"
+      },
+      {
+        "number": "0326-7700000",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 150,000"
+      },
+      {
+        "number": "0339-9999786",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 100,000"
+      },
+      {
+        "number": "0321-7911111",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 125,000"
+      },
+      {
+        "number": "0322-2222274",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 300,000"
+      },
+      {
+        "number": "0331-1311111",
+        "network": "Ufone",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufone.png",
+        "price": "Rs 75,000"
+      },
+      {
+        "number": "0325-0055555",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 150,000"
+      },
+      {
+        "number": "0325-5000005",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 175,000"
+      },
+      {
+        "number": "0321-5999999",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": ""
+      },
+      {
+        "number": "0323-0333333",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 400,000"
+      },
+      {
+        "number": "0325-555555X",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 400,000"
+      },
+      {
+        "number": "0326-3000000",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 550,000"
+      },
+      {
+        "number": "0305-9555555",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 400,000"
+      },
+      {
+        "number": "0301-9111111",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 350,000"
+      },
+      {
+        "number": "0336-0111111",
+        "network": "Ufone",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufone.png",
+        "price": "Rs 150,000"
+      },
+      {
+        "number": "0301-0111111",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 750,000"
+      },
+      {
+        "number": "0321-0555555",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 1,100,000"
+      },
+      {
+        "number": "032X-5555555",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 2,400,000"
+      },
+      {
+        "number": "0308-4555555",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 140,000"
+      },
+      {
+        "number": "0327-777777X",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": ""
+      },
+      {
+        "number": "0336-4444447",
+        "network": "Ufone",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufone.png",
+        "price": "Rs 100,000"
+      },
+      {
+        "number": "0330-9999997",
+        "network": "Ufone",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufone.png",
+        "price": "Rs 135,000"
+      },
+      {
+        "number": "03090909090",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 600,000"
+      }
+    ],
+    "Diamond Numbers": [
+      {
+        "number": "0321-5999999",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": ""
+      },
+      {
+        "number": "0323-0333333",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 400,000"
+      },
+      {
+        "number": "0325-555555X",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 400,000"
+      },
+      {
+        "number": "0326-3000000",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 550,000"
+      },
+      {
+        "number": "0305-9555555",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 400,000"
+      },
+      {
+        "number": "0301-9111111",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 350,000"
+      },
+      {
+        "number": "0336-0111111",
+        "network": "Ufone",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufone.png",
+        "price": "Rs 150,000"
+      },
+      {
+        "number": "0301-0111111",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 750,000"
+      },
+      {
+        "number": "0321-0555555",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 1,100,000"
+      },
+      {
+        "number": "032X-5555555",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 2,400,000"
+      },
+      {
+        "number": "0308-4555555",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 140,000"
+      },
+      {
+        "number": "0327-777777X",
+        "network": "Warid 5G",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": ""
+      },
+      {
+        "number": "0336-4444447",
+        "network": "Ufone",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufone.png",
+        "price": "Rs 100,000"
+      },
+      {
+        "number": "0330-9999997",
+        "network": "Ufone",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/ufone.png",
+        "price": "Rs 135,000"
+      },
+      {
+        "number": "03090909090",
+        "network": "Jazz",
+        "logo": "https://goldennumbers.pk/wp-content/themes/twentyseventeen/content/icon/jazz.svg",
+        "price": "Rs 600,000"
+      }
+    ]
+  }
+}

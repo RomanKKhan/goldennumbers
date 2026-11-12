@@ -608,7 +608,7 @@
                 const enteredUser = usernameInput.value.trim().toLowerCase();
                 const enteredPass = passwordInput.value.trim();
 
-                // Fetch configured credentials
+                // Fetch configured admin and employee accounts
                 let storedCreds = {
                     username: 'admin',
                     email: 'info@goldennumbersofficial.pk',
@@ -617,15 +617,31 @@
                 try {
                     const parsed = JSON.parse(localStorage.getItem('gn_admin_credentials') || '{}');
                     storedCreds = { ...storedCreds, ...parsed };
-                } catch (err) {}
+                } catch (err) {
+                    showError('Admin login settings could not be read. Please contact the system administrator.');
+                    return;
+                }
 
-                // Validate
-                const isValidUser = (enteredUser === storedCreds.username.toLowerCase()) || 
-                                    (enteredUser === storedCreds.email.toLowerCase()) ||
-                                    (enteredUser === 'admin');
-                const isValidPass = (enteredPass === storedCreds.password);
+                let employees = [];
+                try {
+                    const parsedEmployees = JSON.parse(localStorage.getItem('gn_admin_employees') || '[]');
+                    if (!Array.isArray(parsedEmployees)) throw new Error('Employee account data is invalid.');
+                    employees = parsedEmployees;
+                } catch (err) {
+                    showError('Employee account data could not be read. Please contact the system administrator.');
+                    return;
+                }
 
-                if (!isValidUser || !isValidPass) {
+                const adminUsername = String(storedCreds.username || 'admin').toLowerCase();
+                const adminEmail = String(storedCreds.email || 'info@goldennumbersofficial.pk').toLowerCase();
+                const isAdminUser = enteredUser === adminUsername || enteredUser === adminEmail || enteredUser === 'admin';
+                const validAdminLogin = isAdminUser && enteredPass === String(storedCreds.password || '');
+                const employee = employees.find(account => account && account.active !== false
+                    && (String(account.username || '').toLowerCase() === enteredUser
+                        || String(account.email || '').toLowerCase() === enteredUser));
+                const validEmployeeLogin = !!employee && enteredPass === String(employee.password || '');
+
+                if (!validAdminLogin && !validEmployeeLogin) {
                     failedAttempts++;
                     passwordInput.value = '';
 
@@ -662,9 +678,19 @@
                 btnText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
 
                 // Save Session
-                const sessionPayload = {
+                const sessionPayload = validEmployeeLogin ? {
                     loggedIn: true,
-                    user: 'Super Admin',
+                    user: employee.name,
+                    username: employee.username,
+                    employeeId: employee.id,
+                    role: employee.role,
+                    email: employee.email,
+                    loginTime: new Date().toISOString()
+                } : {
+                    loggedIn: true,
+                    user: storedCreds.username || 'Super Admin',
+                    username: storedCreds.username || 'admin',
+                    role: 'Super Admin',
                     email: storedCreds.email || 'info@goldennumbersofficial.pk',
                     loginTime: new Date().toISOString()
                 };

@@ -63,28 +63,27 @@
         <!-- Search Box -->
         <section class="track-page-header">
             <h2>Track Your Order</h2>
-            <p style="color: var(--text-muted); font-size: 0.86rem; margin: 0;">Enter your Order ID to check the status</p>
+            <p style="color: var(--text-muted); font-size: 0.86rem; margin: 0;">Enter your Order ID or checkout email to check the status</p>
 
             <div class="track-search-bar-row">
-                <input type="text" id="trackOrderIdInput" placeholder="e.g. GN-2026-123456" autocomplete="off">
+                <input type="text" id="trackOrderIdInput" placeholder="Order ID or email address" autocomplete="off" aria-label="Order ID or email address">
                 <button type="button" class="btn-track-action" id="btnSearchTrack">
                     <i class="fa-solid fa-magnifying-glass"></i> Track Order
-                </button>
-            </div>
+                </div>
         </section>
 
         <!-- Initial Clean State Prompt -->
         <div id="trackInitialState" class="checkout-card" style="padding: 3rem 1.5rem; text-align: center; margin-bottom: 2rem;">
             <i class="fa-solid fa-magnifying-glass text-gold" style="font-size: 2.2rem; margin-bottom: 0.85rem; display: block;"></i>
             <h3 style="font-size: 1.2rem; color: #fff; margin-bottom: 0.35rem;">Live Order Tracking</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 480px; margin: 0 auto;">Enter your <strong>Order ID</strong> (from your order receipt or SMS/WhatsApp) in the box above to check real-time verification and delivery status.</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 480px; margin: 0 auto;">Enter your <strong>Order ID</strong> (from your order receipt or SMS/WhatsApp) or the <strong>email address</strong> used at checkout to check real-time verification and delivery status. Email search shows your latest order.</p>
         </div>
 
         <!-- Not Found Message -->
         <div id="trackNotFoundMessage" class="checkout-card" style="display: none; padding: 2.5rem; text-align: center; margin-bottom: 2rem;">
             <i class="fa-solid fa-circle-exclamation text-gold" style="font-size: 2.5rem; margin-bottom: 0.75rem;"></i>
             <h3 style="font-size: 1.25rem; margin-bottom: 0.35rem;">Order Not Found</h3>
-            <p style="color: var(--text-muted); font-size: 0.85rem;">Please check the Order ID and try again, or contact our VIP helpline on WhatsApp.</p>
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Please check the Order ID or checkout email and try again, or contact our VIP helpline on WhatsApp.</p>
         </div>
 
         <!-- Tracking Results Container (Hidden until search or direct link) -->

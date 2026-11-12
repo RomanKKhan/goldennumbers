@@ -120,7 +120,7 @@
                         <a href="#choose-number" class="dropdown-network-item" data-network="warid">
                             <span class="dropdown-net-dot dot-warid"></span>
                             <div class="dropdown-net-info">
-                                <span class="dropdown-net-name">Warid LTE</span>
+                                <span class="dropdown-net-name">Warid 5G</span>
                                 <span class="dropdown-net-sub">0321 • 0322 Master Series</span>
                             </div>
                         </a>
@@ -128,6 +128,7 @@
                 </div>
 
                 <a href="#how-it-works" class="nav-link"><i class="fa-solid fa-circle-question"></i> How to Buy</a>
+                <a href="#custom-request" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Can't Find Your Dream Number?</a>
                 <a href="track-order.html" class="nav-link"><i class="fa-solid fa-truck-fast"></i> Track Order</a>
                 <a href="#contact-us" class="nav-link"><i class="fa-solid fa-headset"></i> Contact Us</a>
             </nav>
@@ -188,7 +189,7 @@
                     <a href="#choose-number" class="dropdown-network-item mobile-net-item" data-network="warid">
                         <span class="dropdown-net-dot dot-warid"></span>
                         <div class="dropdown-net-info">
-                            <span class="dropdown-net-name">Warid LTE</span>
+                            <span class="dropdown-net-name">Warid 5G</span>
                             <span class="dropdown-net-sub">0321 • 0322 Master Series</span>
                         </div>
                     </a>
@@ -196,6 +197,7 @@
             </div>
 
             <a href="#how-it-works" class="mobile-nav-link"><i class="fa-solid fa-circle-question"></i> How to Buy</a>
+            <a href="#custom-request" class="mobile-nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Can't Find Your Dream Number?</a>
             <a href="track-order.html" class="mobile-nav-link"><i class="fa-solid fa-truck-fast"></i> Track Order</a>
             <a href="#contact-us" class="mobile-nav-link"><i class="fa-solid fa-headset"></i> Contact Us</a>
             <div class="mobile-nav-footer">
@@ -228,7 +230,7 @@
                         <button class="pk-net-tab-btn" data-network="telenor" title="Telenor 5G">
                             <img src="images/telenor.png" alt="Telenor" class="pk-tab-logo-img">
                         </button>
-                        <button class="pk-net-tab-btn" data-network="warid" title="Warid LTE">
+                        <button class="pk-net-tab-btn" data-network="warid" title="Warid 5G">
                             <img src="images/warid.png" alt="Warid" class="pk-tab-logo-img">
                         </button>
                         <button class="pk-net-tab-btn" data-network="zong" title="Zong 5G">
@@ -241,6 +243,15 @@
                         <div class="pk-pills-scroll" id="pkPillsFilterBar">
                             <!-- Populated dynamically via JS -->
                         </div>
+                    </div>
+
+                    <div class="pk-number-search">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <input type="search" id="pkNumberSearchInput" aria-label="Search mobile numbers"
+                            placeholder="Search numbers (e.g. 03001234567)" autocomplete="off">
+                        <button type="button" id="pkNumberSearchClear" aria-label="Clear number search" hidden>
+                            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                        </button>
                     </div>
 
                     <!-- Live Number Rows List (Exact layout from screenshot) -->
@@ -307,6 +318,11 @@
                             <span class="pk-acc-action-icon"><i class="fa-solid fa-minus"></i></span>
                         </div>
                         <div class="pk-acc-expandable-content" style="display: block;">
+                            <label class="pk-acc-search">
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                <input type="search" class="pk-acc-search-input" data-acc-search="premium"
+                                    aria-label="Search Premium numbers" placeholder="Search Premium numbers" autocomplete="off">
+                            </label>
                             <div class="pk-acc-numbers-grid" id="pkAccPremiumList">
                                 <!-- Populated dynamically -->
                             </div>
@@ -323,6 +339,11 @@
                             <span class="pk-acc-action-icon"><i class="fa-solid fa-plus"></i></span>
                         </div>
                         <div class="pk-acc-expandable-content" style="display: none;">
+                            <label class="pk-acc-search">
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                <input type="search" class="pk-acc-search-input" data-acc-search="golden"
+                                    aria-label="Search Golden numbers" placeholder="Search Golden numbers" autocomplete="off">
+                            </label>
                             <div class="pk-acc-numbers-grid" id="pkAccGoldenList">
                                 <!-- Populated dynamically -->
                             </div>
@@ -339,6 +360,11 @@
                             <span class="pk-acc-action-icon"><i class="fa-solid fa-plus"></i></span>
                         </div>
                         <div class="pk-acc-expandable-content" style="display: none;">
+                            <label class="pk-acc-search">
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                <input type="search" class="pk-acc-search-input" data-acc-search="silver"
+                                    aria-label="Search Silver numbers" placeholder="Search Silver numbers" autocomplete="off">
+                            </label>
                             <div class="pk-acc-numbers-grid" id="pkAccSilverList">
                                 <!-- Populated dynamically -->
                             </div>
@@ -355,6 +381,11 @@
                             <span class="pk-acc-action-icon"><i class="fa-solid fa-plus"></i></span>
                         </div>
                         <div class="pk-acc-expandable-content" style="display: none;">
+                            <label class="pk-acc-search">
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                <input type="search" class="pk-acc-search-input" data-acc-search="platinum"
+                                    aria-label="Search Platinum numbers" placeholder="Search Platinum numbers" autocomplete="off">
+                            </label>
                             <div class="pk-acc-numbers-grid" id="pkAccPlatinumList">
                                 <!-- Populated dynamically -->
                             </div>
@@ -371,6 +402,11 @@
                             <span class="pk-acc-action-icon"><i class="fa-solid fa-plus"></i></span>
                         </div>
                         <div class="pk-acc-expandable-content" style="display: none;">
+                            <label class="pk-acc-search">
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                <input type="search" class="pk-acc-search-input" data-acc-search="diamond"
+                                    aria-label="Search Diamond numbers" placeholder="Search Diamond numbers" autocomplete="off">
+                            </label>
                             <div class="pk-acc-numbers-grid" id="pkAccDiamondList">
                                 <!-- Populated dynamically -->
                             </div>
@@ -426,8 +462,8 @@
                                     <span>Ufone 5G</span>
                                     <i class="fa-solid fa-check opt-check"></i>
                                 </div>
-                                <div class="custom-opt-item" data-value="Warid LTE">
-                                    <span>Warid LTE</span>
+                                <div class="custom-opt-item" data-value="Warid 5G">
+                                    <span>Warid 5G</span>
                                     <i class="fa-solid fa-check opt-check"></i>
                                 </div>
                                 <div class="custom-opt-item" data-value="Onic Digital">
@@ -485,6 +521,12 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="reqEmail"><i class="fa-solid fa-envelope text-gold"></i> Your Email Address</label>
+                            <input type="email" id="reqEmail" class="form-control" placeholder="you@example.com"
+                                autocomplete="email" required>
+                        </div>
+
+                        <div class="form-group">
                             <label for="reqPhone"><i class="fa-brands fa-whatsapp text-green"></i> Your WhatsApp Number</label>
                             <input type="tel" id="reqPhone" class="form-control" placeholder="e.g. 03001234567"
                                 required>
@@ -499,9 +541,9 @@
 
                     <div class="form-actions">
                         <button type="submit" id="btnSubmitCustomReq" class="btn btn-gold btn-lg">
-                            <i class="fa-solid fa-credit-card"></i> Proceed to Online Checkout
+                            <i class="fa-solid fa-paper-plane"></i> Submit Request
                         </button>
-                        <p class="form-note"><i class="fa-solid fa-lock"></i> 100% Secure & Confidential VIP Order Processing.</p>
+                        <p class="form-note"><i class="fa-solid fa-lock"></i> Your request is confidential. Our team will contact you shortly.</p>
                     </div>
                 </form>
             </div>
